@@ -1,0 +1,34 @@
+{
+  "trivial": [
+    {"categoria":"Matemáticas","pregunta":"¿Cuánto es 12 x 12?","opciones":["144","124","132","142"],"respuesta_correcta":"144"},
+    {"categoria":"Matemáticas","pregunta":"¿Cuál es 2^5?","opciones":["32","16","64","25"],"respuesta_correcta":"32"},
+    {"categoria":"Matemáticas","pregunta":"¿Cuál es la raíz cuadrada de 81?","opciones":["9","8","7","6"],"respuesta_correcta":"9"},
+    {"categoria":"Matemáticas","pregunta":"¿Cuánto es 15 + 28?","opciones":["42","43","44","45"],"respuesta_correcta":"43"},
+    {"categoria":"Matemáticas","pregunta":"¿Cuál es el resultado de 100 ÷ 4?","opciones":["20","25","30","40"],"respuesta_correcta":"25"},
+    
+    {"categoria":"Geografía","pregunta":"¿Cuál es la capital de Francia?","opciones":["Madrid","París","Berlín","Roma"],"respuesta_correcta":"París"},
+    {"categoria":"Geografía","pregunta":"¿Cuál es el país más grande del mundo?","opciones":["Canadá","China","Estados Unidos","Rusia"],"respuesta_correcta":"Rusia"},
+    {"categoria":"Geografía","pregunta":"¿Cuál es el río más largo del mundo?","opciones":["Amazonas","Nilo","Yangtsé","Misisipi"],"respuesta_correcta":"Nilo"},
+    {"categoria":"Geografía","pregunta":"¿Qué país tiene forma de bota?","opciones":["Italia","Grecia","España","Portugal"],"respuesta_correcta":"Italia"},
+    {"categoria":"Geografía","pregunta":"¿Cuál es la capital de Japón?","opciones":["Seúl","Beijing","Tokio","Bangkok"],"respuesta_correcta":"Tokio"},
+    
+    {"categoria":"Historia","pregunta":"¿En qué año comenzó la Segunda Guerra Mundial?","opciones":["1937","1939","1941","1945"],"respuesta_correcta":"1939"},
+    {"categoria":"Historia","pregunta":"¿Quién fue el primer presidente de Estados Unidos?","opciones":["Abraham Lincoln","Thomas Jefferson","George Washington","John Adams"],"respuesta_correcta":"George Washington"},
+    {"categoria":"Historia","pregunta":"¿Qué imperio construyó el Coliseo?","opciones":["Griego","Egipcio","Romano","Bizantino"],"respuesta_correcta":"Romano"},
+    {"categoria":"Historia","pregunta":"¿Quién descubrió América?","opciones":["Cristóbal Colón","Magallanes","Vasco de Gama","Américo Vespucio"],"respuesta_correcta":"Cristóbal Colón"},
+    {"categoria":"Historia","pregunta":"¿En qué año cayó el Muro de Berlín?","opciones":["1987","1988","1989","1990"],"respuesta_correcta":"1989"},
+    
+    {"categoria":"Ciencia","pregunta":"¿Cuál es el planeta más grande del sistema solar?","opciones":["Júpiter","Saturno","Neptuno","Marte"],"respuesta_correcta":"Júpiter"},
+    {"categoria":"Ciencia","pregunta":"¿Qué gas respiramos principalmente?","opciones":["Oxígeno","Hidrógeno","Nitrógeno","Dióxido de carbono"],"respuesta_correcta":"Oxígeno"},
+    {"categoria":"Ciencia","pregunta":"¿Cuál es la unidad básica de la vida?","opciones":["Átomo","Molécula","Célula","Organelo"],"respuesta_correcta":"Célula"},
+    {"categoria":"Ciencia","pregunta":"¿Qué órgano bombea sangre a todo el cuerpo?","opciones":["Pulmón","Hígado","Corazón","Riñón"],"respuesta_correcta":"Corazón"},
+    {"categoria":"Ciencia","pregunta":"¿Cuál es el metal más ligero?","opciones":["Aluminio","Litio","Oro","Plata"],"respuesta_correcta":"Litio"},
+    
+    {"categoria":"Arte","pregunta":"¿Quién pintó la Mona Lisa?","opciones":["Miguel Ángel","Leonardo da Vinci","Pablo Picasso","Vincent van Gogh"],"respuesta_correcta":"Leonardo da Vinci"},
+    {"categoria":"Arte","pregunta":"¿Qué estilo artístico se caracteriza por formas geométricas y colores vivos?","opciones":["Impresionismo","Cubismo","Barroco","Romanticismo"],"respuesta_correcta":"Cubismo"},
+    {"categoria":"Arte","pregunta":"¿Quién pintó 'La noche estrellada'?","opciones":["Claude Monet","Vincent van Gogh","Salvador Dalí","Frida Kahlo"],"respuesta_correcta":"Vincent van Gogh"},
+    {"categoria":"Arte","pregunta":"¿En qué país nació Frida Kahlo?","opciones":["España","México","Italia","Francia"],"respuesta_correcta":"México"},
+    {"categoria":"Arte","pregunta":"¿Qué movimiento artístico es Salvador Dalí famoso por?","opciones":["Surrealismo","Cubismo","Impresionismo","Expresionismo"],"respuesta_correcta":"Surrealismo"}
+  ]
+}
+
