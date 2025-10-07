@@ -1,7 +1,7 @@
 # ProyectoTrivial
 
-## Status
-**Versión:** Inicial  
+[![Status](https://img.shields.io/badge/Status-In%20Development-yellow)](https://github.com/dIAgnoseTeam/dIAgnose)
+[![Version](https://img.shields.io/badge/Version-1.0-green)](https://github.com/dIAgnoseTeam/dIAgnose)
 
 Aplicación web desarrollada con **Spring Boot** que simula un juego tipo **Trivial**. Las preguntas y respuestas se almacenan en un archivo **JSON** y se exponen mediante una **API REST**, permitiendo que cualquier cliente pueda consultar y responder.
 
