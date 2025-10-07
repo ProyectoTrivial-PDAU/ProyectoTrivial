@@ -20,10 +20,9 @@ El proyecto permite a los usuarios jugar a un trivial con preguntas aleatorias d
 | Archivo/Clase | Descripción |
 |---------------|-------------|
 | `Pregunta.java` | Clase modelo que representa una pregunta del trivial |
-| `PreguntaService.java` | Servicio que carga las preguntas desde el archivo JSON y ofrece métodos de acceso |
-| `PreguntaController.java` | Controlador REST que expone los endpoints para obtener preguntas y enviar respuestas |
-| `RespuestaDTO.java` | Clase que representa la respuesta enviada por el usuario |
-| `preguntas.json` | Archivo con todas las preguntas del juego, ubicado en `src/main/resources` |
+| `JuegoTrivial.java` | Clase que representa el juego, elige las preguntas, las muestra y lee y comprueba las respuestas del usuario |
+| `ContenedorJSON.java` | Clase encargada de leer el archivo JSON que contiene las preguntas |
+| `ProyectoTrivialApplication.java` | Clase que inicia la aplicación |
 
 ---
 
