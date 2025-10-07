@@ -21,7 +21,7 @@ Este proyecto permite al usuario jugar a un juego del estilo Trivial, en la que 
   
 4.- Ejecución
 - Clonar el repositorio:
-git clone https://github.com/usuario/trivial-spring.git
+git clone https://github.com/ProyectoTrivial-PDAU/ProyectoTrivial
 - Abrir el proyecto en tu IDE
 - Ejecutar la aplicación:
 mvn spring-boot:run
