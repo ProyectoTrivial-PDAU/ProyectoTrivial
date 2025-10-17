@@ -18,6 +18,7 @@ public class JuegoTrivialService {
             InputStream is = getClass().getResourceAsStream("/Preguntas/Preguntas.json");
             ContenedorJSON trivial = mapper.readValue(is, ContenedorJSON.class);
 
+            // Obtener la lista de preguntas
             List<Pregunta> preguntas = trivial.getTrivial();
             Random rand = new Random();
             Scanner sc = new Scanner(System.in);
@@ -25,6 +26,7 @@ public class JuegoTrivialService {
             int puntuacion = 0;
             boolean acertado = true;
 
+            // Bucle del juego
             while (acertado) {
                 Pregunta p = preguntas.get(rand.nextInt(preguntas.size()));
 
