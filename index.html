@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proyecto Trivial</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main id="pantalla-inicio" class="card">
+    <h1 class="title">La Preguntoteca</h1>
+    <p class="subtitle">Pon a prueba tus conocimientos</p>
+    <div class="buttons">
+      <button class="btn btn-primary" onclick="mostrarPregunta()">Modo Aleatorio</button>
+      <button class="btn btn-secondary" onclick="mostrarPantallaCategorias()">Selección de Categoría</button>
+    </div>
+  </main>
+
+  <main id="pantalla-pregunta" class="card" style="display: none;">
+    <div class="header">
+      <span>Pregunta <span id="numero-pregunta">1</span> de 5</span>
+      <span>Puntuación: <span id="puntuacion">0</span></span>
+    </div>
+    <h2 class="question"></h2>
+    <div class="options"></div>
+  </main>
+
+  <main id="pantalla-categorias" class="card" style="display: none;">
+  <h2 class="title">Selecciona una Categoría</h2>
+  <div id="lista-categorias" class="buttons"></div>
+</main>
+
+
+  <script src="app.js"></script>
+</body>
+</html>
