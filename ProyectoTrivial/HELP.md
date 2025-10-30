@@ -1,6 +1,6 @@
 # Getting Started
 
-### Reference Documentation
+## Reference Documentation
 For further reference, please consider the following sections:
 
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
@@ -10,7 +10,7 @@ For further reference, please consider the following sections:
 * [Spring Web](https://docs.spring.io/spring-boot/3.5.6/reference/web/servlet.html)
 * [Spring Data JPA](https://docs.spring.io/spring-boot/3.5.6/reference/data/sql.html#data.sql.jpa-and-spring-data)
 
-### Guides
+## Guides
 The following guides illustrate how to use some features concretely:
 
 * [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
@@ -18,7 +18,7 @@ The following guides illustrate how to use some features concretely:
 * [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
 * [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
 
-### Maven Parent overrides
+## Maven Parent overrides
 
 Due to Maven's design, elements are inherited from the parent POM to the project POM.
 While most of the inheritance is fine, it also inherits unwanted elements like `<license>` and `<developers>` from the parent.

@@ -1,5 +1,24 @@
 package com.example.ProyectoTrivial;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ProyectoTrivialApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ProyectoTrivialApplication.class, args);
+    }
+}
+
+
+
+/*
+
+// LÓGICA PARA EJECUTAR EN TERMINAL PARA PRUEBAS
+
+package com.example.ProyectoTrivial;
+
 import com.example.ProyectoTrivial.Servicios.JuegoTrivialService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,3 +40,4 @@ public class ProyectoTrivialApplication implements CommandLineRunner {
         juegoTrivialService.jugar();
     }
 }
+*/
