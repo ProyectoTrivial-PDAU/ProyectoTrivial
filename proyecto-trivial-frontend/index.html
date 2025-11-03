@@ -44,11 +44,9 @@
 
 
         <div class="main-content">
-            <div id="homeScreen">
 
 
-
-               <div class="header">
+             <div class="header">
                   <div class="header-content">
                     <div class="logo">
                         <div class="logo-icon">💡</div>
@@ -57,11 +55,15 @@
                     <div class="auth-buttons">
                         <button class="auth-btn" onclick="alert('Funcionalidad en desarrollo')">Iniciar sesión</button>
                         <button class="auth-btn" onclick="alert('Funcionalidad en desarrollo')">Registrarse</button>
+                        
                     </div>
                   </div>
                 </div>
 
 
+
+
+            <div id="homeScreen">
 
 
                 <div class="welcome-section">
@@ -98,17 +100,13 @@
             </div>
 
             <div id="categoryScreen" class="category-screen">
-                <div class="header">
-                    <div class="logo">
-                        <div class="logo-icon">💡</div>
-                        <span>TrivIA</span>
-                    </div>
-                    <button class="back-btn" onclick="showHome()">Volver</button>
-                </div>
+
+
 
                 <div class="welcome-section">
                     <h1 class="welcome-title">Selecciona una Categoría</h1>
                     <p class="welcome-subtitle">Elige la categoría de preguntas para tu partida.</p>
+                    <button class="auth-btn" id="backButton" onclick="showHome()" style="display: none;">Volver</button>
                 </div>
 
                 <div id="categoriesGrid" class="categories-grid">

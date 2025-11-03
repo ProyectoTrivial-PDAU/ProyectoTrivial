@@ -20,6 +20,7 @@ function toggleTheme() {
 }
 
 function showHome() {
+    toggleBackButton(false); // Ocultar botón "Volver" en la pantalla de inicio
     document.getElementById('homeScreen').style.display = 'block';
     document.getElementById('categoryScreen').classList.remove('active');
     document.getElementById('gameScreen').classList.remove('active');
@@ -51,6 +52,7 @@ async function startRandomGame() {
 // Modo Por Categoría: Muestra selector de categorías
 async function showCategorySelection() {
     currentGameMode = 'category';
+    toggleBackButton(true); // Mostrar botón "Volver" en la pantalla de inicio
     
     try {
         const response = await fetch(`${API_URL}/categorias`);
@@ -83,6 +85,14 @@ async function showCategorySelection() {
         alert('Error al cargar las categorías. Asegúrate de que el servidor esté ejecutándose en http://localhost:8080');
     }
 }
+
+
+// Controlar visibilidad del botón "Volver" en la pantalla de inicio
+function toggleBackButton(show) {
+  const btn = document.getElementById('backButton');
+  btn.style.display = show ? 'inline-block' : 'none';
+}
+
 
 // Inicia juego con categoría específica
 async function startCategoryGame(category) {
@@ -172,3 +182,4 @@ function restartGame() {
         showCategorySelection();
     }
 }
+
