@@ -1,13 +1,10 @@
 package com.example.ProyectoTrivial.Controladores;
 
-import com.example.ProyectoTrivial.Preguntas.Pregunta;
 import com.example.ProyectoTrivial.Servicios.PreguntaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/trivial")
@@ -27,13 +24,7 @@ public class CategoriaController {
      */
     @GetMapping("/categorias")
     public List<String> obtenerCategorias() {
-        List<Pregunta> todas = preguntaService.cargarTodas();
+        return preguntaService.obtenerCategorias();
 
-        return todas.stream()
-                .map(Pregunta::getCategoria)
-                .filter(Objects::nonNull)
-                .distinct()
-                .sorted()
-                .collect(Collectors.toList());
     }
 }

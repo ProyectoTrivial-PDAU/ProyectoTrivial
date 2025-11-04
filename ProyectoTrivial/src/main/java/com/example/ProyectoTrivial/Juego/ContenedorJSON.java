@@ -1,4 +1,4 @@
-package com.example.ProyectoTrivial.Preguntas;
+package com.example.ProyectoTrivial.Juego;
 
 import java.util.List;
 
