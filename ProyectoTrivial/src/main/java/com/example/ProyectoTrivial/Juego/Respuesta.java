@@ -13,6 +13,7 @@ public class Respuesta {
 
     @ManyToOne
     @JoinColumn(name = "PREGUNTA_ID")
+    @JsonBackReference
     private Pregunta pregunta;
 
 

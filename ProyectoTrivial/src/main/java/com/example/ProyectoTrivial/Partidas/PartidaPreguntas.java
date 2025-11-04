@@ -6,18 +6,18 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "PARTIDA_PREGUNTAS")
-@IdClass(PartidaPreguntasID.class)
 public class PartidaPreguntas {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @EmbeddedId
+    private PartidaPreguntasID id;
 
     @ManyToOne
+    @MapsId("partida")
     @JoinColumn(name = "PARTIDA_ID")
     private Partida partida;
 
     @ManyToOne
+    @MapsId("partida")
     @JoinColumn(name = "PREGUNTA_ID")
     private Pregunta pregunta;
 
@@ -25,11 +25,11 @@ public class PartidaPreguntas {
     @JoinColumn(name = "RESPUESTA_ID")
     private Respuesta respuesta;
 
-    public Long getId() {
+    public PartidaPreguntasID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(PartidaPreguntasID id) {
         this.id = id;
     }
 
