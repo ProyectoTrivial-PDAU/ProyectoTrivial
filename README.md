@@ -23,9 +23,9 @@ proyecto-trivial/
 ├── proyecto-trivial-frontend/
 │   ├── js/
 │   │   └── app.js             # Lógica principal del juego: navegación, preguntas, puntuación
-│   └── styles/
-│       ├── style.css          # Estilos visuales del juego (modo claro/oscuro, layout)
-│       └── index.html         # Estructura HTML del juego (pantallas, botones, contenedores)
+│   ├── styles/
+│   │   ├── style.css          # Estilos visuales del juego (modo claro/oscuro, layout)
+│   └── index.html             # Estructura HTML del juego (pantallas, botones, contenedores)
 │   
 │
 └── ProyectoTrivial/           # Backend en Spring Boot
