@@ -1,6 +1,6 @@
 package com.example.ProyectoTrivial.Controladores;
 
-import com.example.ProyectoTrivial.Juego.Pregunta;
+import com.example.ProyectoTrivial.Model.Pregunta;
 import com.example.ProyectoTrivial.Servicios.JuegoTrivialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package com.example.ProyectoTrivial.Partidas;
+package com.example.ProyectoTrivial.Model.Partidas;
 
 import jakarta.persistence.Embeddable;
 

@@ -1,6 +1,6 @@
 package com.example.ProyectoTrivial.Servicios;
 
-import com.example.ProyectoTrivial.Juego.Pregunta;
+import com.example.ProyectoTrivial.Model.Pregunta;
 import com.example.ProyectoTrivial.Repositorios.PreguntaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

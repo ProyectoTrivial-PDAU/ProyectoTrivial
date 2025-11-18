@@ -1,4 +1,4 @@
-package com.example.ProyectoTrivial.Juego;
+package com.example.ProyectoTrivial.Model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;

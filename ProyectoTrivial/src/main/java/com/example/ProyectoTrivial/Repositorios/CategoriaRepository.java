@@ -1,7 +1,7 @@
 package com.example.ProyectoTrivial.Repositorios;
 
 
-import com.example.ProyectoTrivial.Juego.Categoria;
+import com.example.ProyectoTrivial.Model.Categoria;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

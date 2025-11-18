@@ -1,7 +1,7 @@
-package com.example.ProyectoTrivial.Partidas;
+package com.example.ProyectoTrivial.Model.Partidas;
 
-import com.example.ProyectoTrivial.Juego.Pregunta;
-import com.example.ProyectoTrivial.Juego.Respuesta;
+import com.example.ProyectoTrivial.Model.Pregunta;
+import com.example.ProyectoTrivial.Model.Respuesta;
 import jakarta.persistence.*;
 
 @Entity

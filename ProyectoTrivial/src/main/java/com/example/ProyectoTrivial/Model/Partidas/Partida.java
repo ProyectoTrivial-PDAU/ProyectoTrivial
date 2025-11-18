@@ -1,7 +1,6 @@
-package com.example.ProyectoTrivial.Partidas;
+package com.example.ProyectoTrivial.Model.Partidas;
 
-import com.example.ProyectoTrivial.Juego.Categoria;
-import com.example.ProyectoTrivial.Usuarios.Usuario;
+import com.example.ProyectoTrivial.Model.Usuarios.Usuario;
 import jakarta.persistence.*;
 
 import java.util.List;

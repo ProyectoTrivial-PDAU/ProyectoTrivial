@@ -1,4 +1,4 @@
-package com.example.ProyectoTrivial.Usuarios;
+package com.example.ProyectoTrivial.Model.Usuarios;
 
 import jakarta.persistence.*;
 import org.checkerframework.checker.units.qual.C;
