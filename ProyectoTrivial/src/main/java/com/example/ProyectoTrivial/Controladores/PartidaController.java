@@ -18,7 +18,7 @@ public class PartidaController {
 
 
     /**
-    * Método para guardar la partida
+    * Métodos para guardar la partida
     * @param partida -> objeto de clase "Partida"
      * @return La partida guardada con el ID asignado a la partida
 
