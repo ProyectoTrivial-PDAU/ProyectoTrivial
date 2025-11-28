@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brainiak</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark">
     <div class="container">
@@ -15,21 +15,21 @@
                 </svg>
             </a>
 
-            <div class="sidebar-item" onclick="alert('Funcionalidad en desarrollo')">
+            <div class="sidebar-item" onclick="startRandomGame(); return false;">
                 <svg class="sidebar-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                 </svg>
                 <span class="sidebar-text">Jugar</span>
             </div>
 
-            <div class="sidebar-item" onclick="alert('Funcionalidad en desarrollo')">
+            <div class="sidebar-item" onclick="showRanking(); return false;">
                 <svg class="sidebar-icon" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
                 </svg>
                 <span class="sidebar-text">Ranking</span>
             </div>
 
-            <div class="sidebar-item" onclick="alert('Funcionalidad en desarrollo')">
+            <div class="sidebar-item" onclick="openProfileModal(); return false;">
                 <svg class="sidebar-icon" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
                 </svg>
@@ -52,10 +52,12 @@
                         <div class="logo-icon">💡</div>
                         <span>Brainiak</span>
                     </div>
-                    <div class="auth-buttons">
-                        <button class="auth-btn" onclick="alert('Funcionalidad en desarrollo')">Iniciar sesión</button>
-                        <button class="auth-btn" onclick="alert('Funcionalidad en desarrollo')">Registrarse</button>
-                        
+                    <div class="header-actions">
+                        <div class="profile-info" id="profileInfo">
+                            <div class="profile-avatar" id="profileAvatar">👤</div>
+                            <div class="profile-name" id="profileName">Invitado</div>
+                        </div>
+
                     </div>
                   </div>
                 </div>
@@ -84,18 +86,54 @@
                 </div>
 
                 <div class="admin-section">
-                    <div class="admin-card" onclick="alert('Funcionalidad en desarrollo')">
+                    <div class="admin-card" onclick="showRanking()">
                         <svg class="admin-icon" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/>
                         </svg>
                         <span>Ranking</span>
                     </div>
-                    <div class="admin-card" onclick="alert('Funcionalidad en desarrollo')">
+                    <div class="admin-card" onclick="showUserManagement()">
                         <svg class="admin-icon" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/>
                         </svg>
                         <span>Gestión de Usuarios</span>
                     </div>
+                </div>
+            </div>
+
+            <!-- Ranking Screen -->
+            <div id="rankingScreen" class="ranking-screen" style="display:none;">
+                <div class="welcome-section">
+                    <h1 class="welcome-title">Ranking</h1>
+                    <p class="welcome-subtitle">Top partidas guardadas localmente.</p>
+                    <button class="auth-btn" onclick="showHome()">Volver</button>
+                </div>
+                <div id="rankingList" class="ranking-list">
+                    <table class="ranking-table">
+                        <thead>
+                        <tr>
+                            <th>Puesto</th>
+                            <th>Jugador</th>
+                            <th>Puntuación</th>
+                            <th>Partidas</th>
+                        </tr>
+                        </thead>
+                        <tbody id="rankingTableBody">
+                        <!-- El JS llenará esto -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Users Management Screen -->
+            <div id="usersScreen" class="users-screen" style="display:none;">
+                <div class="welcome-section">
+                    <h1 class="welcome-title">Gestión de Usuarios</h1>
+                    <p class="welcome-subtitle">Lista de usuarios registrados en el servidor.</p>
+                    <button class="auth-btn" onclick="showHome()">Volver</button>
+                </div>
+                <div id="usersList" class="users-list">
+                    <!-- Lista de usuarios -->
                 </div>
             </div>
 
@@ -141,6 +179,25 @@
         </div>
     </div>
 
-    <script src="js/app.js"></script>
+    <script src="app.js"></script>
+
+        <!-- Perfil / Modal edición -->
+        <div id="profileModal" class="modal" aria-hidden="true">
+            <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+                <h3 id="modalTitle">Editar Perfil</h3>
+                <label for="inputName">Nombre</label>
+                <input id="inputName" type="text" placeholder="Tu nombre" />
+                <label for="inputNickname">Nickname</label>
+                <input id="inputNickname" type="text" placeholder="Nickname" />
+                <div class="modal-actions">
+                    <button class="auth-btn" id="saveProfileBtn">Guardar</button>
+                    <button class="auth-btn" id="cancelProfileBtn">Cancelar</button>
+                </div>
+                <p id="profileError" class="field-error" style="display:none"></p>
+            </div>
+        </div>
+    
+        <!-- Toasts -->
+        <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
 </body>
 </html>
