@@ -1,3 +1,5 @@
+//Archivo de Jenkins para un pipeline básico que incluye etapas de checkout, build, archive y deploy.
+
 pipeline {
     agent any
     stages {
