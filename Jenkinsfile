@@ -3,9 +3,41 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout'){ steps{ checkout scm } }
-        stage('Build'){ steps{ sh 'echo "Build ejecutado"' } }
-        stage('Archive'){ steps{ archiveArtifacts artifacts: '**/*' } }
-        stage('Deploy'){ steps{ sh 'echo "Desplegando..."' } }
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh 'echo "Build ejecutado en Linux"'
+                    } else {
+                        bat 'echo "Build ejecutado en Windows"'
+                    }
+                }
+            }
+        }
+
+        stage('Archive') {
+            steps {
+                archiveArtifacts artifacts: '**/*'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh 'echo "Desplegando en Linux..."'
+                    } else {
+                        bat 'echo "Desplegando en Windows..."'
+                    }
+                }
+            }
+        }
     }
 }
+
