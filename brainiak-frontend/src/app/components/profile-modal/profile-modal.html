@@ -1,0 +1,30 @@
+@if (isOpen) {
+  <div class="modal" (click)="onOverlayClick($event)">
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <h3>Editar Perfil</h3>
+      
+      <label for="inputName">Nombre</label>
+      <input 
+        id="inputName" 
+        type="text" 
+        placeholder="Tu nombre"
+        [(ngModel)]="name" />
+      
+      <label for="inputNickname">Nickname</label>
+      <input 
+        id="inputNickname" 
+        type="text" 
+        placeholder="Nickname"
+        [(ngModel)]="nickname" />
+      
+      <div class="modal-actions">
+        <button class="auth-btn" (click)="saveProfile()">Guardar</button>
+        <button class="auth-btn" (click)="closeModal()">Cancelar</button>
+      </div>
+      
+      @if (error) {
+        <p class="field-error">{{ error }}</p>
+      }
+    </div>
+  </div>
+}

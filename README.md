@@ -1,80 +1,334 @@
-# Brainiak
+# 🧠 Brainiak - Juego de Trivia
 
-[![Status](https://img.shields.io/badge/Status-In%20Development-yellow)](https://github.com/dIAgnoseTeam/dIAgnose)
-[![Version](https://img.shields.io/badge/Version-1.0-green)](https://github.com/dIAgnoseTeam/dIAgnose)
+[![Status](https://img.shields.io/badge/Status-Production-green)](https://github.com/dIAgnoseTeam/dIAgnose)
+[![Version](https://img.shields.io/badge/Version-2.0-blue)](https://github.com/dIAgnoseTeam/dIAgnose)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen)](https://spring.io/projects/spring-boot)
+[![Angular](https://img.shields.io/badge/Angular-19-red)](https://angular.io/)
 
-Aplicación web desarrollada con **Spring Boot** que simula un juego tipo **Trivial**. Las preguntas y respuestas se almacenan en un archivo **JSON** y se exponen mediante una **API REST**, permitiendo que cualquier cliente pueda consultar y responder.
-
----
-
-## Descripción
-El proyecto permite a los usuarios jugar a un juego de preguntas y respuestas de distintas categorías.  
-- Existen dos modos de juego: preguntas aleatorias o preguntas por categoría.
-- En cada ronda se lanzan cinco preguntas.
-- Se registra la puntuación de cada partida.  
-- Se mantiene un **ranking** de mejores puntuaciones. (Funcionalidad en producción)
+Aplicación web de juego tipo **Trivial** desarrollada con **Spring Boot** (backend) y **Angular** (frontend). Las preguntas se almacenan en base de datos **H2** y se exponen mediante una **API REST**.
 
 ---
 
-## Estructura del proyecto
+## 📋 Descripción
+
+Brainiak permite a los usuarios jugar a un juego de preguntas y respuestas de distintas categorías:
+
+- 🎮 **Dos modos de juego**: preguntas aleatorias o por categoría
+- ❓ **5 preguntas** por ronda
+- 🏆 **Sistema de ranking** local
+- 🌙 **Tema oscuro/claro** 
+- 👤 **Gestión de perfil** de usuario
+
+---
+
+## 🏗️ Arquitectura del Proyecto
 
 ```
-proyecto-trivial/
-├── proyecto-trivial-frontend/
-│   ├── js/
-│   │   └── app.js             # Lógica principal del juego: navegación, preguntas, puntuación
-│   ├── styles/
-│   │   ├── style.css          # Estilos visuales del juego (modo claro/oscuro, layout)
-│   └── index.html             # Estructura HTML del juego (pantallas, botones, contenedores)
-│   
+ProyectoTrivial/
+├── 📂 brainiak-frontend/          # Frontend Angular 19
+│   ├── src/app/
+│   │   ├── components/            # Componentes UI
+│   │   │   ├── sidebar/           # Navegación lateral
+│   │   │   ├── header/            # Cabecera con logo
+│   │   │   ├── home/              # Pantalla principal
+│   │   │   ├── game/              # Juego de preguntas
+│   │   │   ├── results/           # Pantalla de resultados
+│   │   │   ├── category-selection/# Selector de categorías
+│   │   │   ├── ranking/           # Tabla de ranking
+│   │   │   ├── users/             # Gestión de usuarios
+│   │   │   ├── profile-modal/     # Modal de perfil
+│   │   │   └── toast/             # Notificaciones
+│   │   ├── services/              # Servicios Angular
+│   │   │   ├── trivial.ts         # API preguntas
+│   │   │   ├── user.ts            # Gestión usuarios
+│   │   │   ├── theme.ts           # Tema oscuro/claro
+│   │   │   └── toast.ts           # Notificaciones
+│   │   └── models/                # Interfaces TypeScript
+│   │       ├── pregunta.ts
+│   │       └── user.ts
+│   └── package.json
 │
-└── ProyectoTrivial/           # Backend en Spring Boot
-    └── src/
-        └── main/
-            └── java/com/example/ProyectoTrivial/
-                ├── Configuracion/
-                │   └── WebConfig.java
-                ├── Controladores/
-                │   ├── CategoriaController.java
-                │   └── JuegoTrivialController.java
-                ├── Preguntas/
-                │   ├── ContenedorJSON.java 
-                │   └── Pregunta.java
-                ├── Servicios/
-                │   ├── PreguntaService.java
-                │   └── JuegoTrivialService.java
-                └── ProyectoTrivialApplication.java
-    
+├── 📂 ProyectoTrivial/            # Backend Spring Boot
+│   ├── src/main/java/com/example/ProyectoTrivial/
+│   │   ├── Configuracion/
+│   │   │   ├── WebConfig.java     # CORS config
+│   │   │   └── DataLoader.java    # Carga datos iniciales
+│   │   ├── Controladores/
+│   │   │   ├── JuegoTrivialController.java
+│   │   │   └── CategoriaController.java
+│   │   ├── Model/
+│   │   │   ├── Pregunta.java      # Entidad JPA
+│   │   │   ├── Categoria.java     # Entidad JPA
+│   │   │   └── Usuarios/
+│   │   │       └── Usuario.java   # Entidad JPA
+│   │   ├── Repositorios/
+│   │   │   ├── PreguntaRepository.java
+│   │   │   ├── CategoriaRepository.java
+│   │   │   └── UsuarioRepository.java
+│   │   └── Servicios/
+│   │       ├── PreguntaService.java
+│   │       ├── JuegoTrivialService.java
+│   │       └── UsuarioService.java
+│   ├── src/main/resources/
+│   │   ├── application.properties
+│   │   └── application-dev.properties  # Config H2
+│   └── pom.xml
+│
+├── 📄 BBDDTrivial.sql             # Script SQL (referencia)
+├── 📄 Jenkinsfile                 # CI/CD pipeline
+└── 📄 README.md                   # Esta documentación
 ```
 
+---
 
-| Archivo/Clase Java | Descripción |
-|---------------|-------------|
-| `WebConfig.java` | Configuración CORS para permitir acceso desde el frontend |
-| `CategoriaController.java` | Endpoint para obtener categorías únicas |
-| `JuegoTrivialController.java` | Endpoint para obtener preguntas (aleatorias o por categoría) |
-| `ContenedorJSON.java` | Clase encargada de leer el archivo JSON que contiene las preguntas |
-| `Pregunta.java` | Clase modelo que representa una pregunta del trivial |
-| `PreguntaService.java` | Lógica para cargar y filtrar preguntas desde el JSON |
-| `JuegoTrivialService.java` | Orquestación del juego (flujo, puntuación, selección) |
-| `ProyectoTrivialApplication.java` | Clase principal que arranca la aplicación Spring Boot |
+## 🛠️ Tecnologías
+
+### Backend
+| Tecnología | Versión | Uso |
+|------------|---------|-----|
+| Java | 17+ | Lenguaje principal |
+| Spring Boot | 3.x | Framework backend |
+| Spring Data JPA | - | Persistencia |
+| H2 Database | - | Base de datos en memoria (dev) |
+| Maven | 3.x | Gestión de dependencias |
+
+### Frontend
+| Tecnología | Versión | Uso |
+|------------|---------|-----|
+| Angular | 19 | Framework frontend |
+| TypeScript | 5.x | Lenguaje tipado |
+| SCSS | - | Estilos |
+| RxJS | - | Programación reactiva |
 
 ---
 
-## Requisitos
+## 🚀 Instalación y Ejecución
 
-- **Java 17** o superior
-- **Maven**  
-- **IDE Backend:** IntelliJ IDEA
-- **IDE Frontend:** Visual Studio  
-- **Base de datos:** MariaDB (para futuras mejoras)  
+### Prerrequisitos
+- **Java 17+**
+- **Node.js 20+** (para el frontend)
+- **Maven 3.x**
 
----
-
-## Ejecución
-
-1. Clonar el repositorio:
-
+### 1. Clonar el repositorio
 ```bash
-git clone https://github.com/ProyectoTrivial-PDAU/ProyectoTrivial.git
+git clone <url-del-repositorio>
+cd ProyectoTrivial
+```
 
+### 2. Ejecutar el Backend
+```bash
+cd ProyectoTrivial
+./mvnw spring-boot:run
+```
+El backend estará disponible en: `http://localhost:8080`
+
+### 3. Ejecutar el Frontend
+```bash
+cd brainiak-frontend
+npm install
+ng serve --port 4200
+```
+El frontend estará disponible en: `http://localhost:4200`
+
+---
+
+## 📡 API REST
+
+### Endpoints disponibles
+
+#### Preguntas
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| `GET` | `/api/trivial/preguntas?cantidad=5` | Obtener preguntas aleatorias |
+| `GET` | `/api/trivial/preguntas?categoria=Historia&cantidad=5` | Preguntas por categoría |
+
+#### Categorías
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| `GET` | `/api/trivial/categorias` | Listar todas las categorías |
+
+#### Usuarios
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| `GET` | `/api/usuarios` | Listar usuarios |
+| `POST` | `/api/usuarios` | Crear usuario |
+| `DELETE` | `/api/usuarios/{id}` | Eliminar usuario |
+
+### Ejemplo de respuesta - Preguntas
+```json
+[
+  {
+    "categoria": "Historia",
+    "pregunta": "¿En qué año comenzó la Segunda Guerra Mundial?",
+    "opciones": ["1935", "1939", "1941", "1945"],
+    "respuesta_correcta": "1939"
+  }
+]
+```
+
+### Ejemplo de respuesta - Categorías
+```json
+["Arte", "Ciencia", "Geografía", "Historia", "Matemáticas"]
+```
+
+---
+
+## 🎮 Modos de Juego
+
+### Modo Clásico
+- Preguntas aleatorias de todas las categorías
+- 5 preguntas por partida
+- Puntuación al final
+
+### Modo Por Categoría
+- Selecciona una categoría específica
+- 5 preguntas de esa categoría
+- Ideal para practicar temas específicos
+
+---
+
+## 🎨 Características del Frontend
+
+### Componentes principales
+
+| Componente | Descripción |
+|------------|-------------|
+| `Sidebar` | Navegación lateral con iconos |
+| `Header` | Logo y perfil de usuario |
+| `Home` | Pantalla de inicio con modos de juego |
+| `Game` | Pantalla de juego con preguntas |
+| `Results` | Pantalla de resultados finales |
+| `CategorySelection` | Grid de categorías disponibles |
+| `Ranking` | Tabla de mejores puntuaciones |
+| `ProfileModal` | Modal para editar perfil |
+| `Toast` | Sistema de notificaciones |
+
+### Servicios
+
+| Servicio | Responsabilidad |
+|----------|-----------------|
+| `TrivialService` | Comunicación con API de preguntas |
+| `UserService` | Gestión de usuarios y rankings |
+| `ThemeService` | Toggle tema oscuro/claro |
+| `ToastService` | Mostrar notificaciones |
+
+---
+
+## 🗄️ Base de Datos
+
+### Entidades JPA
+
+#### Categoria
+```java
+@Entity
+public class Categoria {
+    @Id @GeneratedValue
+    private Long id;
+    private String nombre;
+}
+```
+
+#### Pregunta
+```java
+@Entity
+public class Pregunta {
+    @Id @GeneratedValue
+    private Long id;
+    private String textoPregunta;
+    private String opcion1, opcion2, opcion3, opcion4;
+    private String respuestaCorrecta;
+    
+    @ManyToOne
+    private Categoria categoria;
+}
+```
+
+#### Usuario
+```java
+@Entity
+public class Usuario {
+    @Id @GeneratedValue
+    private Long id;
+    private String email;
+    private String password;
+    private String nombre_usuario;
+}
+```
+
+### Datos iniciales (DataLoader)
+
+El `DataLoader.java` carga automáticamente 5 categorías y 25 preguntas de ejemplo al iniciar la aplicación en perfil `dev`.
+
+---
+
+## ⚙️ Configuración
+
+### application.properties
+```properties
+spring.profiles.active=dev
+```
+
+### application-dev.properties (H2 en memoria)
+```properties
+spring.datasource.url=jdbc:h2:mem:trivialdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.h2.console.enabled=true
+spring.jpa.hibernate.ddl-auto=create-drop
+```
+
+Consola H2 disponible en: `http://localhost:8080/h2-console`
+
+---
+
+## 🧪 Testing
+
+### Backend
+```bash
+cd ProyectoTrivial
+./mvnw test
+```
+
+### Frontend
+```bash
+cd brainiak-frontend
+ng test
+```
+
+---
+
+## 📦 Build para Producción
+
+### Backend
+```bash
+cd ProyectoTrivial
+./mvnw clean package -DskipTests
+java -jar target/ProyectoTrivial-0.0.1-SNAPSHOT.jar
+```
+
+### Frontend
+```bash
+cd brainiak-frontend
+ng build --configuration production
+```
+Los archivos estáticos se generan en `dist/brainiak-frontend/`
+
+---
+
+## 🔄 CI/CD
+
+El proyecto incluye un `Jenkinsfile` para integración continua.
+
+---
+
+## 👥 Autores
+
+- **Equipo BrainIak** - DAM2
+
+---
+
+## 📄 Licencia
+
+Este proyecto es de uso educativo - DAM2 2025/2026

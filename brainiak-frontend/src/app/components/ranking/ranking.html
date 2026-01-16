@@ -1,0 +1,36 @@
+<div class="ranking-screen">
+  <div class="welcome-section">
+    <h1 class="welcome-title">Ranking</h1>
+    <p class="welcome-subtitle">Top partidas guardadas localmente.</p>
+    <button class="auth-btn" (click)="goHome()">Volver</button>
+  </div>
+
+  <div class="ranking-list">
+    @if (rankings.length === 0) {
+      <p class="no-rankings">No hay partidas guardadas aún.</p>
+    } @else {
+      <table class="ranking-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Jugador</th>
+            <th>Puntuación</th>
+            <th>Categoría</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (entry of rankings; track entry.date; let i = $index) {
+            <tr>
+              <td>{{ i + 1 }}</td>
+              <td>{{ entry.name }}</td>
+              <td>{{ entry.score }}/{{ entry.total }}</td>
+              <td>{{ entry.category }}</td>
+              <td>{{ formatDate(entry.date) }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+</div>

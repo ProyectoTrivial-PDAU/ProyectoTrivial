@@ -1,6 +1,6 @@
 package com.example.ProyectoTrivial.Controladores;
 
-import com.example.ProyectoTrivial.Preguntas.Pregunta;
+import com.example.ProyectoTrivial.Model.Pregunta;
 import com.example.ProyectoTrivial.Servicios.PreguntaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,14 +23,13 @@ public class CategoriaController {
 
     /**
      * Devuelve una lista con todas las categorías disponibles
-     * a partir del JSON de preguntas.
      */
     @GetMapping("/categorias")
     public List<String> obtenerCategorias() {
         List<Pregunta> todas = preguntaService.cargarTodas();
 
         return todas.stream()
-                .map(Pregunta::getCategoria)
+                .map(p -> p.getCategoria() == null ? null : p.getCategoria().getNombre())
                 .filter(Objects::nonNull)
                 .distinct()
                 .sorted()
