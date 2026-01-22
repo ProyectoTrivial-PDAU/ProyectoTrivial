@@ -11,6 +11,7 @@ export class TrivialService {
 
   constructor(private http: HttpClient) {}
 
+  /*
   getPreguntas(cantidad: number = 5, categoria?: string): Observable<Pregunta[]> {
     let url = `${this.apiUrl}/preguntas?cantidad=${cantidad}`;
     if (categoria) {
@@ -18,6 +19,22 @@ export class TrivialService {
     }
     return this.http.get<Pregunta[]>(url);
   }
+  */
+
+  /*
+  getPreguntas(): Observable<Pregunta[]> {
+    return this.http.get<Pregunta[]>(`${this.apiUrl}/preguntas`);
+  }
+*/
+
+getPreguntas(cantidad: number = 5, categoria?: string): Observable<Pregunta[]> {
+  let url = `${this.apiUrl}/preguntas?cantidad=${cantidad}`;
+  if (categoria) {
+    url += `&categoria=${encodeURIComponent(categoria)}`;
+  }
+  return this.http.get<Pregunta[]>(url);
+}
+
 
   getCategorias(): Observable<string[]> {
     return this.http.get<string[]>(`${this.apiUrl}/categorias`);

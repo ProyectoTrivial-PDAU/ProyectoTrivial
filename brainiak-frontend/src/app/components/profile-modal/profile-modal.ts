@@ -51,7 +51,7 @@ export class ProfileModal {
     // Try to save to backend
     let savedOnServer = false;
     try {
-      await this.userService.saveUserToServer(user).toPromise();
+      //await this.userService.saveUserToServer(user).toPromise();
       savedOnServer = true;
     } catch {
       // Ignore network errors

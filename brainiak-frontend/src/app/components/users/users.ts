@@ -29,6 +29,7 @@ export class Users implements OnInit {
   loadUsers(): void {
     this.loading = true;
     this.error = false;
+    /*
     this.userService.getUsers().subscribe({
       next: (users) => {
         this.users = users;
@@ -40,8 +41,10 @@ export class Users implements OnInit {
         this.toastService.show('Error cargando usuarios desde el servidor', 'error');
       }
     });
+    */
   }
 
+  /*
   deleteUser(user: User): void {
     if (!confirm(`¿Eliminar usuario ${user.name}?`)) return;
     
@@ -57,6 +60,7 @@ export class Users implements OnInit {
       });
     }
   }
+  */
 
   goHome(): void {
     this.router.navigate(['/']);

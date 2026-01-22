@@ -15,3 +15,16 @@ export const routes: Routes = [
   { path: 'users', component: Users },
   { path: '**', redirectTo: '' }
 ];
+
+
+/*
+export const routes: Routes = [
+  { path: '', component: Home },
+  { path: 'game', component: Game },
+  { path: 'results', component: Results },
+  { path: 'categories', component: CategorySelection },
+  { path: 'ranking', component: Ranking },
+  { path: 'users', component: Users },
+  { path: '**', redirectTo: '' }
+];
+*/

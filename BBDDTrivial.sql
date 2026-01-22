@@ -16,8 +16,16 @@
 
 
 -- Volcando estructura de base de datos para proyectotrivial
+/*
 CREATE DATABASE IF NOT EXISTS `proyectotrivial` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_uca1400_ai_ci */;
 USE `proyectotrivial`;
+*/
+
+/*
+CREATE USER 'jugadorTrivial'@'localhost' IDENTIFIED BY '1234';
+GRANT ALL PRIVILEGES ON proyectotrivial.* TO 'jugadorTrivial'@'localhost';
+FLUSH PRIVILEGES;
+*/
 
 -- Volcando estructura para tabla proyectotrivial.categorias
 CREATE TABLE IF NOT EXISTS `categorias` (

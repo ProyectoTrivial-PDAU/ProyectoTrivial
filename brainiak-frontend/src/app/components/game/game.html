@@ -11,16 +11,17 @@
     <div class="question-number">{{ currentQuestion.categoria }}</div>
     <div class="question-text">{{ currentQuestion.pregunta }}</div>
     <div class="options-grid">
-      @for (option of currentQuestion.opciones; track option) {
-        <button 
-          class="option-btn"
-          [class.correct]="isCorrect(option)"
-          [class.incorrect]="isIncorrect(option)"
-          [disabled]="answered"
-          (click)="selectAnswer(option)">
-          {{ option }}
-        </button>
-      }
+      
+      <button 
+        *ngFor="let option of currentQuestion.opciones; trackBy: trackOption"
+        class="option-btn"
+        [class.correct]="isCorrect(option)"
+        [class.incorrect]="isIncorrect(option)"
+        
+        (click)="selectAnswer(option)">
+        {{ option }}
+      </button>
+
     </div>
   </div>
 </div>
