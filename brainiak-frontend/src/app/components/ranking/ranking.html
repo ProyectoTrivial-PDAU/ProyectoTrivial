@@ -1,36 +1,79 @@
 <div class="ranking-screen">
   <div class="welcome-section">
     <h1 class="welcome-title">Ranking</h1>
-    <p class="welcome-subtitle">Top partidas guardadas localmente.</p>
+    <p class="welcome-subtitle">Ranking de partidas</p>
     <button class="auth-btn" (click)="goHome()">Volver</button>
   </div>
 
-  <div class="ranking-list">
-    @if (rankings.length === 0) {
-      <p class="no-rankings">No hay partidas guardadas aún.</p>
+  <!-- RANKING GLOBAL (Base de datos) -->
+  <div class="ranking-section">
+    <h2 class="section-title">🌍 Ranking Global</h2>
+    
+    @if (loading) {
+      <p class="loading-message">Cargando ranking global...</p>
+    } @else if (error) {
+      <p class="error-message">Error al cargar el ranking global. Verifica la conexión con el servidor.</p>
+    } @else if (rankingGlobal.length === 0) {
+      <p class="no-rankings">No hay partidas guardadas en el servidor aún.</p>
     } @else {
-      <table class="ranking-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Jugador</th>
-            <th>Puntuación</th>
-            <th>Categoría</th>
-            <th>Fecha</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (entry of rankings; track entry.date; let i = $index) {
+      <div class="ranking-list">
+        <table class="ranking-table">
+          <thead>
             <tr>
-              <td>{{ i + 1 }}</td>
-              <td>{{ entry.name }}</td>
-              <td>{{ entry.score }}/{{ entry.total }}</td>
-              <td>{{ entry.category }}</td>
-              <td>{{ formatDate(entry.date) }}</td>
+              <th>#</th>
+              <th>Jugador</th>
+              <th>Puntuación</th>
+              <th>Categoría</th>
+              <th>Fecha</th>
             </tr>
-          }
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            @for (entry of rankingGlobal; track $index; let i = $index) {
+              <tr>
+                <td>{{ i + 1 }}</td>
+                <td>{{ getPlayerName(entry) }}</td>
+                <td>{{ getScore(entry) }}/{{ getTotal(entry) }}</td>
+                <td>{{ getCategory(entry) }}</td>
+                <td>{{ getFormattedDate(entry) }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </div>
+
+  <!-- RANKING LOCAL -->
+  <div class="ranking-section">
+    <h2 class="section-title">💾 Ranking Local</h2>
+    
+    @if (rankings.length === 0) {
+      <p class="no-rankings">No hay partidas guardadas localmente aún.</p>
+    } @else {
+      <div class="ranking-list">
+        <table class="ranking-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Jugador</th>
+              <th>Puntuación</th>
+              <th>Categoría</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (entry of rankings; track entry.date; let i = $index) {
+              <tr>
+                <td>{{ i + 1 }}</td>
+                <td>{{ entry.name }}</td>
+                <td>{{ entry.score }}/{{ entry.total }}</td>
+                <td>{{ entry.category }}</td>
+                <td>{{ formatDate(entry.date) }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
     }
   </div>
 </div>
