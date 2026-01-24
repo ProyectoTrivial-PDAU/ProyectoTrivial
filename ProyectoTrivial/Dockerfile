@@ -58,7 +58,7 @@ RUN addgroup -g 1000 spring && adduser -u 1000 -G spring -s /bin/sh -D spring
 WORKDIR /app
 
 # Copy the JAR file from the build stage
-COPY --from=build /app/target/*.jar app.jar
+COPY --from=build /app/target/brainiak.jar app.jar
 
 # Change ownership of the application files
 RUN chown -R spring:spring /app
