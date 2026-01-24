@@ -70,21 +70,6 @@ export class Game implements OnInit {
     return this.questions[this.currentQuestionIndex] || null;
   }
 
-  /*
-  selectAnswer(option: string): void {
-    if (this.answered) return;
-    
-    this.selectedAnswer = option;
-    this.answered = true;
-
-    if (option === this.currentQuestion?.respuesta_correcta) {
-      this.score++;
-    }
-
-    setTimeout(() => this.nextQuestion(), 1000);
-  }
-    */
-
   selectAnswer(option: string): void {
     // Evitar seleccionar si ya se respondió
     if (this.answered) return;
@@ -103,18 +88,6 @@ export class Game implements OnInit {
     // Esperar 1.5 segundos antes de pasar a la siguiente pregunta
     setTimeout(() => this.nextQuestion(), 1500);
   }
-
-  /*
-  nextQuestion(): void {
-    if (this.currentQuestionIndex < this.questions.length - 1) {
-      this.currentQuestionIndex++;
-      this.answered = false;
-      this.selectedAnswer = null;
-    } else {
-      this.finishGame();
-    }
-  }
-  */
 
   nextQuestion(): void {
     this.currentQuestionIndex++;
@@ -185,12 +158,6 @@ export class Game implements OnInit {
   goHome(): void {
     this.router.navigate(['/']);
   }
-
-  /*
-  trackOption(index: number, option: string): string {
-    return option;
-  }
-    */
 
   trackOption(index: number, option: string): string {
     // Incluir el índice de la pregunta para forzar re-renderizado
