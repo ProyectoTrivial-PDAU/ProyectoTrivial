@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../../services/user';
 import { RankingEntry } from '../../models/user';
+import { environment } from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-ranking',
@@ -41,7 +43,8 @@ export class Ranking implements OnInit {
     console.log('🔍 Cargando ranking global...');
     
     // Usar HttpClient en lugar de fetch para mejor integración con Angular
-    this.http.get<any[]>('/api/trivial/ranking-global').subscribe({
+    //this.http.get<any[]>('/api/trivial/ranking-global').subscribe({
+    this.http.get<any[]>(`${environment.apiUrl}/api/trivial/ranking-global`).subscribe({
       next: (data) => {
         console.log('✅ Ranking global recibido:', data);
         console.log('📊 Primer registro (para debug):', data[0]);
