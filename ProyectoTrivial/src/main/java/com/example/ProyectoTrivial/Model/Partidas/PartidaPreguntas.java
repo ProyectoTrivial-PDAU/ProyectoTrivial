@@ -4,6 +4,16 @@ import com.example.ProyectoTrivial.Model.Pregunta;
 import com.example.ProyectoTrivial.Model.Respuesta;
 import jakarta.persistence.*;
 
+/*
+Clase que representa la relación entre una partida y las preguntas asociadas a ella,
+incluyendo la respuesta seleccionada por el jugador.
+@Entity indica que esta clase es una entidad JPA.
+@Table especifica el nombre de la tabla en la base de datos.
+@EmbeddedId indica que la clase utiliza una clave primaria compuesta.
+@ManyToOne define las relaciones de muchos a uno con las entidades Partida, Pregunta y Respuesta.
+@MapsId se utiliza para mapear las claves foráneas a los campos de la clave primaria compuesta.
+@JoinColumn especifica las columnas de la tabla que se utilizan para las relaciones.
+*/
 @Entity
 @Table(name = "PARTIDA_PREGUNTAS")
 public class PartidaPreguntas {

@@ -6,6 +6,19 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
+/*
+Clase que representa una pregunta en el sistema.
+@Entity indica que esta clase es una entidad JPA.
+@Table especifica el nombre de la tabla en la base de datos.
+@Id indica el campo que es la clave primaria.
+@GeneratedValue especifica la estrategia de generación de la clave primaria.
+@ManyToOne define la relación de muchos a uno con la entidad Categoria.
+@JoinColumn especifica la columna que se utiliza para la unión con la tabla de categorías.
+@Column se utiliza para definir las propiedades de las columnas en la tabla.
+@OneToMany define la relación de uno a muchos con la entidad Respuesta.
+cascade = CascadeType.ALL indica que las operaciones en Pregunta se propagan a Respuesta. Esto es, si se elimina una Pregunta, 
+también se eliminan sus Respuestas asociadas.
+*/
 @Entity
 @Table(name = "PREGUNTAS")
 public class Pregunta {

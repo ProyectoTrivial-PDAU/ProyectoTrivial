@@ -9,6 +9,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/*
+Clase de servicio para gestionar la lógica relacionada con las partidas.
+Utiliza PartidaRepository para realizar operaciones CRUD en las entidades Partida.
+@Service indica que esta clase es un servicio de Spring, lo que permite la inyección de dependencias y la gestión del ciclo de vida del bean.
+@Autowired se utiliza para inyectar automáticamente la dependencia de PartidaRepository en esta clase.
+*/
 @Service
 public class PartidaService {
 

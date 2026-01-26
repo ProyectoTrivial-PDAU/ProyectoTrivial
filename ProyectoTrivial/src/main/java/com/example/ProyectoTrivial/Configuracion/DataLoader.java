@@ -15,6 +15,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+
+/*
+Clase para cargar datos iniciales en el entorno de desarrollo.
+Se ejecuta al iniciar la aplicación si el perfil activo es "dev".
+@Component indica que es un bean gestionado por Spring. Un bean es un objeto que forma parte del contenedor de Spring y cuya
+vida es gestionada por este.
+@Profile("dev") especifica que este bean solo se activa cuando el perfil "dev" está activo.
+Implementa ApplicationRunner para ejecutar código después de que la aplicación haya arrancado.
+
+*/
 @Component
 @Profile("dev")
 public class DataLoader implements ApplicationRunner {
@@ -27,6 +37,10 @@ public class DataLoader implements ApplicationRunner {
         this.preguntaRepository = preguntaRepository;
     }
 
+    /*
+    @Override indica que este método sobrescribe un método de la interfaz ApplicationRunner.
+    @Transactional asegura que todas las operaciones de la base de datos dentro de este método se ejecuten en una sola transacción.
+    */
     @Override
     @Transactional
     public void run(ApplicationArguments args) {
@@ -94,6 +108,9 @@ public class DataLoader implements ApplicationRunner {
                 Arrays.asList("Surrealismo","Cubismo","Impresionismo","Expresionismo"), "Surrealismo");
     }
 
+    /*
+    Método para crear una categoría si no existe ya en la base de datos.
+    */
     private void seedCategoria(String nombre, String descripcion) {
         categoriaRepository.findByNombre(nombre).orElseGet(() -> {
             Categoria c = new Categoria();
@@ -103,6 +120,10 @@ public class DataLoader implements ApplicationRunner {
         });
     }
 
+    /*
+    Metodo para añadir una pregunta con sus respuestas a una categoría existente.
+    Busca la categoría por nombre, crea la pregunta y las respuestas, y las guarda en la base de datos.
+    */
     private void addPregunta(String categoriaNombre, String texto, List<String> opciones, String correcta) {
         Categoria categoria = categoriaRepository.findByNombre(categoriaNombre)
                 .orElseThrow(() -> new IllegalStateException("Categoría no encontrada: " + categoriaNombre));

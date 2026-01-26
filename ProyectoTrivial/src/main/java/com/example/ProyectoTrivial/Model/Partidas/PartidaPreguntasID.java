@@ -5,6 +5,10 @@ import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
+/*
+Clase que representa la clave primaria compuesta para la entidad PartidaPreguntas.
+@Embeddable indica que esta clase puede ser incrustada en una entidad JPA.
+*/
 @Embeddable
 public class PartidaPreguntasID implements Serializable {
 

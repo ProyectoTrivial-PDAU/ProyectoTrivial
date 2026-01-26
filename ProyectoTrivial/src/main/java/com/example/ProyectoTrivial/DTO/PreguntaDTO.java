@@ -1,8 +1,13 @@
-package com.example.ProyectoTrivial.Preguntas;
+package com.example.ProyectoTrivial.DTO;
 
 import java.util.List;
 
-public class Pregunta {
+/*
+Clase DTO (Data Transfer Object) para transferir datos de preguntas entre el servidor y el cliente.
+Esta clase contiene los campos necesarios para representar una pregunta, incluyendo su categoría,
+las opciones de respuesta y la respuesta correcta.
+*/
+public class PreguntaDTO {
     private String categoria;
     private String pregunta;
     private List<String> opciones;

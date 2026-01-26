@@ -7,6 +7,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/*
+Clase de servicio para gestionar la lógica relacionada con los usuarios.
+Utiliza UsuarioRepository para realizar operaciones CRUD en las entidades Usuario.
+@Service indica que esta clase es un servicio de Spring, lo que permite la inyección de dependencias y la gestión del ciclo de vida del bean.
+@Autowired se utiliza para inyectar automáticamente la dependencia de UsuarioRepository en esta clase.
+Optional se utiliza para manejar la posible ausencia de un valor (por ejemplo, cuando un usuario no se encuentra en la base de datos).
+*/
 @Service
 public class UsuarioService {
 

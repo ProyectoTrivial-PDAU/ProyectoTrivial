@@ -9,6 +9,13 @@ import org.springframework.stereotype.Service;
 import com.example.ProyectoTrivial.Model.Pregunta;
 import com.example.ProyectoTrivial.Repositorios.PreguntaRepository;
 
+/*
+Clase de servicio para gestionar la lógica relacionada con las preguntas.
+Utiliza PreguntaRepository para realizar operaciones CRUD en las entidades Pregunta.
+@Service indica que esta clase es un servicio de Spring, lo que permite la inyección de dependencias y la gestión del ciclo de vida del bean.
+@Autowired se utiliza para inyectar automáticamente la dependencia de PreguntaRepository en esta clase.
+.stream() habilita el procesamiento funcional de las colecciones. 
+*/
 @Service
 public class PreguntaService {
 

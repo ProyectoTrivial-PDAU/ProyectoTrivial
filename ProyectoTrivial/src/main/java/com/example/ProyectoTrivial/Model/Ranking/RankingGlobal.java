@@ -3,6 +3,12 @@ package com.example.ProyectoTrivial.Model.Ranking;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
+/*
+Clase que representa una entrada en el ranking global de jugadores.
+@Entity indica que esta clase es una entidad JPA.
+@Table especifica el nombre de la tabla en la base de datos.
+@PrePersist se utiliza para establecer la fecha automáticamente antes de persistir la entidad. Persistir significa guardar o almacenar el estado de un objeto en una base de datos.
+*/
 @Entity
 @Table(name = "ranking_global")
 public class RankingGlobal {
@@ -22,7 +28,6 @@ public class RankingGlobal {
 
     private LocalDateTime fecha;
 
-
     @PrePersist
     public void prePersist() {
         this.fecha = LocalDateTime.now();
@@ -30,22 +35,52 @@ public class RankingGlobal {
 
     // Getters y setters
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getJugador() { return jugador; }
-    public void setJugador(String jugador) { this.jugador = jugador; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public int getPuntuacion() { return puntuacion; }
-    public void setPuntuacion(int puntuacion) { this.puntuacion = puntuacion; }
+    public String getJugador() {
+        return jugador;
+    }
 
-    public int getTotalPreguntas() { return totalPreguntas; }
-    public void setTotalPreguntas(int totalPreguntas) { this.totalPreguntas = totalPreguntas; }
+    public void setJugador(String jugador) {
+        this.jugador = jugador;
+    }
 
-    public String getCategoria() { return categoria; }
-    public void setCategoria(String categoria) { this.categoria = categoria; }
+    public int getPuntuacion() {
+        return puntuacion;
+    }
 
-    public LocalDateTime getFecha() { return fecha; }
-    public void setFecha(LocalDateTime fecha) { this.fecha = fecha; }
+    public void setPuntuacion(int puntuacion) {
+        this.puntuacion = puntuacion;
+    }
+
+    public int getTotalPreguntas() {
+        return totalPreguntas;
+    }
+
+    public void setTotalPreguntas(int totalPreguntas) {
+        this.totalPreguntas = totalPreguntas;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
 
 }

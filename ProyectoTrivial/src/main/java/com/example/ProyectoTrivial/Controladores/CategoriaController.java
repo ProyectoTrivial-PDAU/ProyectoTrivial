@@ -9,6 +9,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/*
+Clase controladora para manejar las solicitudes relacionadas con las categorías de preguntas del trivial.
+@RestController indica que esta clase es un controlador REST.
+@RequestMapping("/api/trivial") define la ruta base para todas las solicitudes manejadas por este controlador.
+@CrossOrigin(origins = "*") habilita CORS para este controlador, permitiendo solicitudes desde cualquier origen.
+*/
 @RestController
 @RequestMapping("/api/trivial")
 @CrossOrigin(origins = "*") // cambia el puerto si tu front corre en otro //(origins = "http://127.0.0.1:5500") para live server de vscode
@@ -22,7 +28,9 @@ public class CategoriaController {
     }
 
     /**
-     * Devuelve una lista con todas las categorías disponibles
+     * Devuelve una lista con todas las categorías disponibles.
+     * @GetMapping("/categorias") indica que este método maneja las solicitudes GET a la ruta /categorias.
+     * @return Lista de nombres de categorías.
      */
     @GetMapping("/categorias")
     public List<String> obtenerCategorias() {

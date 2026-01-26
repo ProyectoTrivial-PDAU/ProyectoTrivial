@@ -6,6 +6,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/*
+Clase de servicio para gestionar la lógica relacionada con el ranking global.
+Utiliza RankingGlobalRepository para realizar operaciones CRUD en las entidades RankingGlobal.
+@Service indica que esta clase es un servicio de Spring, lo que permite la inyección de dependencias y la gestión del ciclo de vida del bean.
+
+*/
 @Service
 public class RankingGlobalService {
 

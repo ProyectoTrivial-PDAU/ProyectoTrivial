@@ -2,6 +2,13 @@ package com.example.ProyectoTrivial.Model;
 
 import jakarta.persistence.*;
 
+/*
+clase que representa una categoría de preguntas en el sistema.
+@Entity indica que esta clase es una entidad JPA.
+@Table especifica el nombre de la tabla en la base de datos.
+@Id indica el campo que es la clave primaria.
+@GeneratedValue especifica la estrategia de generación de la clave primaria.
+*/
 @Entity
 @Table(name = "CATEGORIAS")
 public class Categoria {
