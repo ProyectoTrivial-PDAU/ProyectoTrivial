@@ -9,6 +9,7 @@ import { ToastService } from '../../services/toast';
 import { Pregunta } from '../../models/pregunta';
 import { RankingEntry } from '../../models/user';
 import { ChangeDetectorRef } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -69,21 +70,6 @@ export class Game implements OnInit {
     return this.questions[this.currentQuestionIndex] || null;
   }
 
-  /*
-  selectAnswer(option: string): void {
-    if (this.answered) return;
-    
-    this.selectedAnswer = option;
-    this.answered = true;
-
-    if (option === this.currentQuestion?.respuesta_correcta) {
-      this.score++;
-    }
-
-    setTimeout(() => this.nextQuestion(), 1000);
-  }
-    */
-
   selectAnswer(option: string): void {
     // Evitar seleccionar si ya se respondió
     if (this.answered) return;
@@ -102,18 +88,6 @@ export class Game implements OnInit {
     // Esperar 1.5 segundos antes de pasar a la siguiente pregunta
     setTimeout(() => this.nextQuestion(), 1500);
   }
-
-  /*
-  nextQuestion(): void {
-    if (this.currentQuestionIndex < this.questions.length - 1) {
-      this.currentQuestionIndex++;
-      this.answered = false;
-      this.selectedAnswer = null;
-    } else {
-      this.finishGame();
-    }
-  }
-  */
 
   nextQuestion(): void {
     this.currentQuestionIndex++;
@@ -136,6 +110,7 @@ export class Game implements OnInit {
     this.answered = false;
   }
 
+  
   finishGame(): void {
     const user = this.userService.getCurrentUser();
     const entry: RankingEntry = {
@@ -145,8 +120,23 @@ export class Game implements OnInit {
       date: new Date().toISOString(),
       category: this.category || 'Aleatorio'
     };
+    // Guardar ranking local
     this.userService.saveRanking(entry);
     
+    // Enviar al ranking global
+    fetch(`${environment.apiUrl}/api/trivial/ranking-global`, {
+      
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        jugador: entry.name,
+        puntuacion: entry.score,
+        totalPreguntas: entry.total,
+        categoria: entry.category
+      })
+    }).catch(err => console.error('Error guardando ranking global:', err));
+
+    // Navegar a la pantalla de resultados
     this.router.navigate(['/results'], { 
       queryParams: { 
         score: this.score, 
@@ -168,12 +158,6 @@ export class Game implements OnInit {
   goHome(): void {
     this.router.navigate(['/']);
   }
-
-  /*
-  trackOption(index: number, option: string): string {
-    return option;
-  }
-    */
 
   trackOption(index: number, option: string): string {
     // Incluir el índice de la pregunta para forzar re-renderizado
