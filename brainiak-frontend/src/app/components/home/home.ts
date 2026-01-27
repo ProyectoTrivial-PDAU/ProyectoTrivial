@@ -15,7 +15,7 @@ export class Home {
   }
 
   showCategorySelection(): void {
-    this.router.navigate(['/categories']);
+    this.router.navigate(['/categorias']);
   }
 
   showRanking(): void {
@@ -23,6 +23,6 @@ export class Home {
   }
 
   showUserManagement(): void {
-    this.router.navigate(['/users']);
+    this.router.navigate(['/usuarios']);
   }
 }

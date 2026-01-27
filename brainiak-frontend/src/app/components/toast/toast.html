@@ -1,3 +1,5 @@
+
+
 <div class="toast-container">
   @for (toast of toasts$ | async; track toast.id) {
     <div class="toast {{ toast.type }}" (click)="removeToast(toast.id)">
