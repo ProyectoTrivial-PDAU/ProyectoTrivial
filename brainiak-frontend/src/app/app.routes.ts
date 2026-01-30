@@ -10,9 +10,9 @@ export const routes: Routes = [
   { path: '', component: Home },
   { path: 'game', component: Game },
   { path: 'results', component: Results },
-  { path: 'categories', component: CategorySelection },
+  { path: 'categorias', component: CategorySelection },
   { path: 'ranking', component: Ranking },
-  { path: 'users', component: Users },
+  { path: 'usuarios', component: Users },
   { path: '**', redirectTo: '' }
 ];
 
