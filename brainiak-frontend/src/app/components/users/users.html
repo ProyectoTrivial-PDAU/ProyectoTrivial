@@ -1,0 +1,33 @@
+<div class="users-screen">
+  <div class="welcome-section">
+    <h1 class="welcome-title">Gestión de Usuarios</h1>
+    <p class="welcome-subtitle">Lista de usuarios registrados en el servidor.</p>
+    <button class="auth-btn" (click)="goHome()">Volver</button>
+  </div>
+
+  <div class="users-list">
+    @if (loading) {
+      <p>Cargando usuarios...</p>
+    } @else if (error) {
+      <p>Error cargando usuarios desde el servidor.</p>
+    } @else if (users.length === 0) {
+      <p>No hay usuarios registrados en el servidor.</p>
+    } @else {
+      @for (user of users; track user.id) {
+        <div class="user-row">
+          <div class="user-name">
+            {{ user.name }}
+            @if (user.nickname) {
+              <span class="user-nick">{{ user.nickname }}</span>
+            }
+          </div>
+          <div class="user-actions">
+            <!--
+            <button class="auth-btn delete-btn" (click)="deleteUser(user)">Eliminar</button>
+            -->
+          </div>
+        </div>
+      }
+    }
+  </div>
+</div>

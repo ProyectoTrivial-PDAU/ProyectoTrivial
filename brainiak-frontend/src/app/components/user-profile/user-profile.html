@@ -1,0 +1,25 @@
+<div class="profile-container">
+  <h2>Mi Perfil</h2>
+  
+  @if (user) {
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="avatar-placeholder">{{ user.nombre_usuario?.charAt(0) || user.email?.charAt(0) || 'U' }}</div>
+        <h3>{{ user.nombre_usuario || 'Usuario' }}</h3>
+      </div>
+      
+      <div class="profile-details">
+        <div class="detail-item">
+          <span class="label">Email:</span>
+          <span class="value">{{ user.email }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">ID de Usuario:</span>
+          <span class="value">{{ user.id }}</span>
+        </div>
+      </div>
+      
+      <button class="logout-btn" (click)="logout()">Cerrar Sesión</button>
+    </div>
+  }
+</div>

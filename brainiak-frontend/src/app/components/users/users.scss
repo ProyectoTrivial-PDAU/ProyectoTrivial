@@ -1,0 +1,71 @@
+.users-screen {
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.welcome-section {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.welcome-title {
+  font-size: 52px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.welcome-subtitle {
+  font-size: 24px;
+  opacity: 0.9;
+  margin-bottom: 20px;
+}
+
+.users-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.user-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-radius: 12px;
+}
+
+:host-context(body.light) .user-row {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+:host-context(body.dark) .user-row {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.user-name {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.user-nick {
+  opacity: 0.7;
+  font-weight: 400;
+  margin-left: 8px;
+}
+
+.user-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.delete-btn {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #f44336 !important;
+  color: white !important;
+
+  &:hover {
+    background-color: #d32f2f !important;
+  }
+}

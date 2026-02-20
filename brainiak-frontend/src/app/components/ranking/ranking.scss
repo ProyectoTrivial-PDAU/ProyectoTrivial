@@ -1,0 +1,129 @@
+.ranking-screen {
+  width: 100%;
+  max-width: 1200px;
+  padding: 40px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.welcome-section {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.welcome-title {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.welcome-subtitle {
+  font-size: 20px;
+  opacity: 0.8;
+  margin-bottom: 30px;
+}
+
+.auth-btn {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+:host-context(body.light) .auth-btn {
+  background-color: rgba(30, 58, 95, 0.9);
+  color: white;
+
+  &:hover {
+    background-color: rgba(30, 58, 95, 1);
+    transform: translateY(-2px);
+  }
+}
+
+:host-context(body.dark) .auth-btn {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #1a1a1a;
+
+  &:hover {
+    background-color: white;
+    transform: translateY(-2px);
+  }
+}
+
+.ranking-section {
+  margin-bottom: 50px;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.ranking-list {
+  padding: 30px;
+  border-radius: 16px;
+  overflow-x: auto;
+}
+
+:host-context(body.light) .ranking-list {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+:host-context(body.dark) .ranking-list {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.ranking-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ranking-table th {
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 16px;
+  border-bottom: 2px solid;
+}
+
+:host-context(body.light) .ranking-table th {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+:host-context(body.dark) .ranking-table th {
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+
+.ranking-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid;
+}
+
+:host-context(body.light) .ranking-table td {
+  border-bottom-color: rgba(0, 0, 0, 0.05);
+}
+
+:host-context(body.dark) .ranking-table td {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.ranking-table tr:hover {
+  background-color: rgba(128, 128, 128, 0.1);
+}
+
+.no-rankings, .loading-message, .error-message {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  opacity: 0.7;
+}
+
+.error-message {
+  color: #f44336;
+  opacity: 1;
+}

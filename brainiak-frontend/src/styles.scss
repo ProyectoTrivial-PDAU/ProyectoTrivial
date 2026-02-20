@@ -1,0 +1,89 @@
+/* You can add global styles to this file, and also import other style files */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.light {
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  color: #1a1a1a;
+}
+
+body.dark {
+  background: linear-gradient(135deg, #0a1929 0%, #1a237e 100%);
+  color: #ffffff;
+}
+
+:root {
+  --bg-light-start: #e3f2fd;
+  --bg-light-end: #bbdefb;
+  --bg-dark-start: #0a1929;
+  --bg-dark-end: #1a237e;
+  --accent: #1e3a5f;
+  --muted: rgba(255, 255, 255, 0.6);
+}
+
+// Botón genérico
+.auth-btn {
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+body.light .auth-btn {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #1a1a1a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+body.dark .auth-btn {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+}
+
+// Back button
+.back-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+body.light .back-btn {
+  background-color: #1e3a5f;
+  color: white;
+}
+
+body.dark .back-btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}

@@ -1,0 +1,57 @@
+@if (isOpen) {
+  <div class="modal" (click)="onOverlayClick($event)">
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <h3>{{ isRegisterMode ? 'Crear Cuenta' : 'Iniciar Sesión' }}</h3>
+      
+      @if (isRegisterMode) {
+        <label for="reg-username">Nombre de Usuario</label>
+        <input 
+          id="reg-username" 
+          type="text" 
+          placeholder="Ej: BrainiakMaster"
+          [(ngModel)]="username" />
+      }
+
+      <label for="auth-email">Correo Electrónico</label>
+      <input 
+        id="auth-email" 
+        type="email" 
+        placeholder="usuario@ejemplo.com"
+        [(ngModel)]="email" />
+      
+      <label for="auth-password">Contraseña</label>
+      <input 
+        id="auth-password" 
+        type="password" 
+        placeholder="********"
+        [(ngModel)]="password" />
+
+      @if (isRegisterMode) {
+        <label for="auth-confirm-pass">Confirmar Contraseña</label>
+        <input 
+          id="auth-confirm-pass" 
+          type="password" 
+          placeholder="********"
+          [(ngModel)]="confirmPassword" />
+      }
+      
+      <div class="modal-actions">
+        <button class="auth-btn primary" (click)="submit()">
+          {{ isRegisterMode ? 'Registrarse' : 'Entrar' }}
+        </button>
+        <button class="auth-btn secondary" (click)="closeModal()">Cancelar</button>
+      </div>
+
+      <div class="toggle-mode">
+        <span>{{ isRegisterMode ? '¿Ya tienes cuenta?' : '¿No tienes cuenta?' }}</span>
+        <button class="link-btn" (click)="toggleMode()">
+          {{ isRegisterMode ? 'Inicia Sesión' : 'Regístrate aquí' }}
+        </button>
+      </div>
+      
+      @if (error) {
+        <p class="field-error">{{ error }}</p>
+      }
+    </div>
+  </div>
+}
