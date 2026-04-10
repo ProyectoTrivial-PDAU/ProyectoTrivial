@@ -1,25 +1,89 @@
-<div class="profile-container">
-  <h2>Mi Perfil</h2>
-  
-  @if (user) {
-    <div class="profile-card">
-      <div class="profile-header">
+<div class="profile-container" *ngIf="user">
+
+  <!-- Header card -->
+  <div class="profile-hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="avatar-ring">
         <div class="avatar-placeholder">{{ user.nombre_usuario?.charAt(0) || user.email?.charAt(0) || 'U' }}</div>
-        <h3>{{ user.nombre_usuario || 'Usuario' }}</h3>
       </div>
-      
-      <div class="profile-details">
-        <div class="detail-item">
-          <span class="label">Email:</span>
-          <span class="value">{{ user.email }}</span>
-        </div>
-        <div class="detail-item">
-          <span class="label">ID de Usuario:</span>
-          <span class="value">{{ user.id }}</span>
-        </div>
-      </div>
-      
-      <button class="logout-btn" (click)="logout()">Cerrar Sesión</button>
+      <h2 class="user-name">{{ user.nombre_usuario || 'Usuario' }}</h2>
+      <p class="user-email">{{ user.email }}</p>
+      <div class="level-badge">Nivel {{ level }} — {{ levelTitle }}</div>
     </div>
-  }
+  </div>
+
+  <!-- XP Bar -->
+  <div class="xp-section">
+    <div class="xp-header">
+      <span class="xp-label">Experiencia</span>
+      <span class="xp-value">{{ totalXP }} XP</span>
+    </div>
+    <div class="xp-bar">
+      <div class="xp-fill" [style.width.%]="xpProgress"></div>
+    </div>
+    <p class="xp-hint">{{ xpToNext }} XP para el siguiente nivel</p>
+  </div>
+
+  <!-- Stats grid -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon">🎮</div>
+      <div class="stat-value">{{ totalGames }}</div>
+      <div class="stat-label">Partidas</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🏆</div>
+      <div class="stat-value">{{ bestScore }}</div>
+      <div class="stat-label">Mejor</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">📊</div>
+      <div class="stat-value">{{ avgScore }}%</div>
+      <div class="stat-label">Media</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🔥</div>
+      <div class="stat-value">{{ streak }}</div>
+      <div class="stat-label">Racha</div>
+    </div>
+  </div>
+
+  <!-- Favorite category -->
+  <div class="fav-category" *ngIf="favoriteCategory">
+    <span class="fav-icon">⭐</span>
+    <div class="fav-info">
+      <span class="fav-label">Categoría favorita</span>
+      <span class="fav-name">{{ favoriteCategory }}</span>
+    </div>
+  </div>
+
+  <!-- Recent games -->
+  <div class="recent-section" *ngIf="recentGames.length > 0">
+    <h3 class="section-title">Últimas partidas</h3>
+    <div class="recent-list">
+      <div class="recent-item" *ngFor="let game of recentGames; let i = index" [style.animation-delay]="i * 0.05 + 's'">
+        <div class="recent-left">
+          <div class="recent-score-ring" [class.great]="getPercent(game) >= 80" [class.good]="getPercent(game) >= 50 && getPercent(game) < 80" [class.low]="getPercent(game) < 50">
+            {{ getPercent(game) }}%
+          </div>
+          <div class="recent-info">
+            <span class="recent-category">{{ game.category }}</span>
+            <span class="recent-date">{{ formatDate(game.date) }}</span>
+          </div>
+        </div>
+        <div class="recent-result">{{ game.score }}/{{ game.total }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty state -->
+  <div class="empty-state" *ngIf="recentGames.length === 0">
+    <div class="empty-emoji">🎯</div>
+    <p>Aún no has jugado ninguna partida.</p>
+    <button class="play-btn" (click)="goPlay()">¡Jugar ahora!</button>
+  </div>
+
+  <!-- Logout -->
+  <button class="logout-btn" (click)="logout()">Cerrar Sesión</button>
 </div>

@@ -1,33 +1,80 @@
 <div class="home-screen">
+
+  <!-- Hero -->
   <div class="welcome-section">
-    <h1 class="welcome-title">¡Bienvenido a Brainiak!</h1>
-    <p class="welcome-subtitle">Elige un modo de juego para comenzar con la partida.</p>
+    <h1 class="welcome-title">¡Bienvenido a <span class="brand-gradient">Brainiak</span>!</h1>
+    <p class="welcome-subtitle">Pon a prueba tu conocimiento. Elige un modo de juego.</p>
   </div>
 
+  <!-- Quick stats -->
+  <div class="quick-stats" *ngIf="totalGames > 0">
+    <div class="qs-item">
+      <span class="qs-value">{{ totalGames }}</span>
+      <span class="qs-label">Partidas</span>
+    </div>
+    <div class="qs-divider"></div>
+    <div class="qs-item">
+      <span class="qs-value">{{ avgScore }}%</span>
+      <span class="qs-label">Media</span>
+    </div>
+    <div class="qs-divider"></div>
+    <div class="qs-item">
+      <span class="qs-value">{{ streak }}🔥</span>
+      <span class="qs-label">Racha</span>
+    </div>
+    <div class="qs-divider"></div>
+    <div class="qs-item">
+      <span class="qs-value">Nv.{{ level }}</span>
+      <span class="qs-label">{{ levelTitle }}</span>
+    </div>
+  </div>
+
+  <!-- Game modes -->
   <div class="game-modes">
-    <div class="game-mode-card mode-clasico" (click)="startRandomGame()">
-      <div class="mode-icon">❓</div>
+    <div class="game-mode-card mode-clasico" (click)="openCountModal('random')">
+      <div class="mode-emoji">🎲</div>
       <div class="mode-title">Clásico</div>
+      <div class="mode-desc">Preguntas aleatorias de todas las categorías</div>
     </div>
 
-    <div class="game-mode-card mode-tiempo" (click)="showCategorySelection()">
-      <div class="mode-icon">⏱️</div>
+    <div class="game-mode-card mode-categoria" (click)="showCategorySelection()">
+      <div class="mode-emoji">🎯</div>
       <div class="mode-title">Por Categoría</div>
+      <div class="mode-desc">Elige tu tema favorito y demuestra lo que sabes</div>
     </div>
   </div>
 
+  <!-- Daily tip -->
+  <div class="daily-tip">
+    <div class="tip-icon">💡</div>
+    <div class="tip-content">
+      <span class="tip-label">Dato curioso</span>
+      <span class="tip-text">{{ dailyTip }}</span>
+    </div>
+  </div>
+
+  <!-- Admin / Nav -->
   <div class="admin-section">
     <div class="admin-card" (click)="showRanking()">
-      <svg class="admin-icon" fill="currentColor" viewBox="0 0 20 20">
-        <path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/>
-      </svg>
+      <span class="admin-emoji">🏆</span>
       <span>Ranking</span>
     </div>
     <div class="admin-card" (click)="showUserManagement()">
-      <svg class="admin-icon" fill="currentColor" viewBox="0 0 20 20">
-        <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/>
-      </svg>
-      <span>Gestión de Usuarios</span>
+      <span class="admin-emoji">👥</span>
+      <span>Usuarios</span>
     </div>
   </div>
+
+  <!-- Last game banner -->
+  <div class="last-game" *ngIf="lastGame">
+    <div class="lg-left">
+      <span class="lg-emoji">{{ lastGameEmoji }}</span>
+      <div class="lg-info">
+        <span class="lg-title">Última partida</span>
+        <span class="lg-detail">{{ lastGame.category }} — {{ lastGame.score }}/{{ lastGame.total }}</span>
+      </div>
+    </div>
+    <button class="lg-replay" (click)="replayLast()">🔁 Repetir</button>
+  </div>
+
 </div>

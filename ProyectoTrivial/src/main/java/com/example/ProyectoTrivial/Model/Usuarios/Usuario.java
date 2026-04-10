@@ -1,5 +1,6 @@
 package com.example.ProyectoTrivial.Model.Usuarios;
 
+import com.example.ProyectoTrivial.Model.Partidas.Partida;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 

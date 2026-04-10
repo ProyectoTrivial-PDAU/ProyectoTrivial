@@ -94,18 +94,3 @@ public class AuthController {
         return ResponseEntity.ok().build(); 
     }
 }
-    ResponseEntity<?> es una respuesta HTTP genérica que puede contener cualquier tipo de cuerpo.
-    */
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> body) {
-        try {
-            Usuario u = usuarioService.loginUsuario(
-                    body.get("email"),
-                    body.get("password")
-            );
-            return ResponseEntity.ok(u);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
-}

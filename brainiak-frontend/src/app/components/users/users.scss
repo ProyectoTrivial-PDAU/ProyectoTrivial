@@ -2,29 +2,31 @@
   width: 100%;
   max-width: 800px;
   padding: 20px;
+  animation: fadeInUp 0.5s ease-out;
 }
 
 .welcome-section {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
 .welcome-title {
-  font-size: 52px;
-  font-weight: 700;
-  margin-bottom: 20px;
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
 }
 
 .welcome-subtitle {
-  font-size: 24px;
-  opacity: 0.9;
-  margin-bottom: 20px;
+  font-size: 18px;
+  opacity: 0.65;
+  margin-bottom: 16px;
 }
 
 .users-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .user-row {
@@ -32,26 +34,43 @@
   justify-content: space-between;
   align-items: center;
   padding: 16px 20px;
-  border-radius: 12px;
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(12px);
+
+  &:hover {
+    transform: translateX(4px);
+  }
 }
 
 :host-context(body.light) .user-row {
-  background-color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
 }
 
 :host-context(body.dark) .user-row {
-  background-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
 }
 
 .user-name {
-  font-weight: 600;
-  font-size: 18px;
+  font-weight: 700;
+  font-size: 16px;
 }
 
 .user-nick {
-  opacity: 0.7;
+  opacity: 0.5;
   font-weight: 400;
   margin-left: 8px;
+  font-size: 14px;
 }
 
 .user-actions {
@@ -60,12 +79,19 @@
 }
 
 .delete-btn {
-  padding: 8px 16px;
+  padding: 8px 18px;
   font-size: 14px;
-  background-color: #f44336 !important;
+  background: linear-gradient(135deg, #ef4444, #dc2626) !important;
   color: white !important;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.25);
 
   &:hover {
-    background-color: #d32f2f !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(239, 68, 68, 0.35) !important;
   }
 }

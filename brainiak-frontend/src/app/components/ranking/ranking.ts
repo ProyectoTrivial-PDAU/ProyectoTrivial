@@ -18,6 +18,30 @@ export class Ranking implements OnInit {
   rankingGlobal: any[] = [];
   loading = false;
   error = false;
+  activeTab = 'global';
+
+  // Paginación
+  pageSize = 10;
+  globalPage = 1;
+  localPage = 1;
+  paginatedGlobal: any[] = [];
+  paginatedLocal: RankingEntry[] = [];
+
+  get globalTotalPages(): number {
+    return Math.ceil(this.rankingGlobal.length / this.pageSize);
+  }
+
+  get localTotalPages(): number {
+    return Math.ceil(this.rankings.length / this.pageSize);
+  }
+
+  get globalOffset(): number {
+    return (this.globalPage - 1) * this.pageSize;
+  }
+
+  get localOffset(): number {
+    return (this.localPage - 1) * this.pageSize;
+  }
 
   constructor(
     private router: Router,
@@ -31,30 +55,41 @@ export class Ranking implements OnInit {
     this.loadRankingGlobal();
   }
 
+  updatePaginatedGlobal(): void {
+    const start = this.globalOffset;
+    this.paginatedGlobal = this.rankingGlobal.slice(start, start + this.pageSize);
+  }
+
+  updatePaginatedLocal(): void {
+    const start = this.localOffset;
+    this.paginatedLocal = this.rankings.slice(start, start + this.pageSize);
+  }
+
+  scrollToRow(_index: number): void {
+    // No-op, just for podium click
+  }
+
   loadRankings(): void {
     this.rankings = this.userService.getRankings()
       .sort((a, b) => b.score - a.score || new Date(b.date).getTime() - new Date(a.date).getTime());
+    this.localPage = 1;
+    this.updatePaginatedLocal();
   }
 
   loadRankingGlobal(): void {
     this.loading = true;
     this.error = false;
     
-    console.log('🔍 Cargando ranking global...');
-    
-    // Usar HttpClient en lugar de fetch para mejor integración con Angular
-    //this.http.get<any[]>('/api/trivial/ranking-global').subscribe({
     this.http.get<any[]>(`${environment.apiUrl}/api/trivial/ranking-global`).subscribe({
       next: (data) => {
-        console.log('✅ Ranking global recibido:', data);
-        console.log('📊 Primer registro (para debug):', data[0]);
-        console.log('🔑 Campos del primer registro:', data[0] ? Object.keys(data[0]) : 'No hay datos');
         this.rankingGlobal = data;
         this.loading = false;
+        this.globalPage = 1;
+        this.updatePaginatedGlobal();
         this.cdr.detectChanges();
       },
       error: (err) => {
-        console.error('❌ Error cargando ranking global:', err);
+        console.error('Error cargando ranking global:', err);
         this.error = true;
         this.loading = false;
         this.cdr.detectChanges();

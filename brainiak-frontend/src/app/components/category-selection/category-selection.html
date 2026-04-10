@@ -1,47 +1,39 @@
 <div class="category-screen">
   <div class="welcome-section">
-    <h1 class="welcome-title">Selecciona una Categoría</h1>
-    <p class="welcome-subtitle">Elige la categoría de preguntas para tu partida.</p>
-    <button class="auth-btn" (click)="goHome()">Volver</button>
+    <h1 class="welcome-title">Elige tu <span class="brand-gradient">Categoría</span></h1>
+    <p class="welcome-subtitle">Selecciona un tema y demuestra lo que sabes.</p>
+    <button class="back-btn" (click)="goHome()">← Volver</button>
   </div>
 
   <!-- Mensaje de carga -->
   <div class="loading-message" *ngIf="loading">
+    <div class="loading-spinner"></div>
     <p>Cargando categorías...</p>
   </div>
 
-  <!-- Grid de categorías -->
-  <div class="categories-grid" *ngIf="!loading && categories.length > 0">
-    <div class="category-card" 
-         *ngFor="let category of categories; trackBy: trackCategory"
-         (click)="selectCategory(category)">
-      <div class="category-icon">{{ getIcon(category) }}</div>
-      <div>{{ category }}</div>
+  <!-- Grid de categorías con Angular CDK Virtual Scroll -->
+  <cdk-virtual-scroll-viewport
+    *ngIf="!loading && categoryRows.length > 0"
+    class="categories-viewport"
+    [itemSize]="rowHeight">
+    <div
+      class="categories-row"
+      *cdkVirtualFor="let row of categoryRows; trackBy: trackCategoryRow; let rowIndex = index">
+      <button
+        class="category-card"
+        type="button"
+        *ngFor="let category of row; let itemIndex = index; trackBy: trackCategory"
+        [style.animation-delay]="(rowIndex * visibleColumns + itemIndex) * 0.03 + 's'"
+        (click)="openCountModal(category)">
+        <div class="category-icon">{{ getIcon(category) }}</div>
+        <div class="category-name">{{ category }}</div>
+      </button>
     </div>
-  </div>
+  </cdk-virtual-scroll-viewport>
 
   <!-- Mensaje si no hay categorías -->
   <div class="no-categories" *ngIf="!loading && categories.length === 0">
     <p>No hay categorías disponibles en este momento.</p>
-    <button class="retry-btn" (click)="loadCategories()">Reintentar</button>
+    <button class="auth-btn" (click)="loadCategories()">Reintentar</button>
   </div>
 </div>
-
-<!--
-<div class="category-screen">
-  <div class="welcome-section">
-    <h1 class="welcome-title">Selecciona una Categoría</h1>
-    <p class="welcome-subtitle">Elige la categoría de preguntas para tu partida.</p>
-    <button class="auth-btn" (click)="goHome()">Volver</button>
-  </div>
-
-  <div class="categories-grid">
-    <div class="category-card" *ngFor="let category of categories; trackBy: trackCategory"
-      (click)="selectCategory(category)">
-      <div class="category-icon">{{ getIcon(category) }}</div>
-      <div>{{ category }}</div>
-    </div>
-
-  </div>
-</div>
--->

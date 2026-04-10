@@ -1,31 +1,43 @@
 <div class="game-screen" *ngIf="currentQuestion">
-  <div class="game-header">
-    <div class="game-info">
-      <div>Pregunta: <span>{{ currentQuestionIndex + 1 }}</span>/<span>{{ questions.length }}</span></div>
-      <div>Puntuación: <span>{{ score }}</span></div>
-    </div>
-    <button class="back-btn" (click)="goHome()">Volver</button>
+  <!-- Progress bar -->
+  <div class="progress-container">
+    <div class="progress-bar" [style.width.%]="((currentQuestionIndex) / questions.length) * 100"></div>
   </div>
 
-  <div class="question-card">
-    <div class="question-number">{{ currentQuestion.categoria }}</div>
+  <div class="game-header">
+    <div class="game-info">
+      <div class="info-badge">
+        <span class="info-label">Pregunta</span>
+        <span class="info-value">{{ currentQuestionIndex + 1 }}/{{ questions.length }}</span>
+      </div>
+      <div class="info-badge score-badge">
+        <span class="info-label">Puntos</span>
+        <span class="info-value">{{ score }}</span>
+      </div>
+    </div>
+    <button class="back-btn" (click)="goHome()">← Salir</button>
+  </div>
+
+  <div class="question-card" [class.shake-wrong]="shakeCard">
+    <div class="question-category">{{ currentQuestion.categoria }}</div>
     <div class="question-text">{{ currentQuestion.pregunta }}</div>
     <div class="options-grid">
-      
       <button 
-        *ngFor="let option of currentQuestion.opciones; trackBy: trackOption"
+        *ngFor="let option of currentQuestion.opciones; let i = index; trackBy: trackOption"
         class="option-btn"
         [class.correct]="isCorrect(option)"
         [class.incorrect]="isIncorrect(option)"
-        
+        [class.reveal-correct]="answered && option === currentQuestion.respuesta_correcta && option !== selectedAnswer"
+        [style.animation-delay]="i * 0.08 + 's'"
         (click)="selectAnswer(option)">
-        {{ option }}
+        <span class="option-letter">{{ ['A','B','C','D'][i] }}</span>
+        <span class="option-text">{{ option }}</span>
       </button>
-
     </div>
   </div>
 </div>
 
 <div class="loading" *ngIf="!currentQuestion && questions.length === 0">
+  <div class="loading-spinner"></div>
   <p>Cargando preguntas...</p>
 </div>

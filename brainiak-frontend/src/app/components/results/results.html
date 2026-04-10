@@ -1,8 +1,37 @@
 <div class="results-screen">
-  <h2 class="results-title">¡Juego Terminado!</h2>
-  <div class="results-score">{{ score }}/{{ total }}</div>
-  <div class="results-buttons">
-    <button class="results-btn" (click)="restartGame()">Jugar de nuevo</button>
-    <button class="results-btn" (click)="goHome()">Volver al inicio</button>
+  <!-- Confetti particles -->
+  <div class="confetti-container" *ngIf="percentage >= 70">
+    <div class="confetti" *ngFor="let c of confettiPieces" 
+         [style.left.%]="c.left" 
+         [style.animation-delay]="c.delay + 's'"
+         [style.background-color]="c.color"></div>
+  </div>
+
+  <div class="results-card">
+    <div class="result-emoji">{{ resultEmoji }}</div>
+    <h2 class="results-title">{{ resultTitle }}</h2>
+    <p class="results-message">{{ resultMessage }}</p>
+    
+    <div class="score-ring">
+      <svg viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="52" class="ring-bg" />
+        <circle cx="60" cy="60" r="52" class="ring-fill"
+          [style.stroke-dasharray]="circumference"
+          [style.stroke-dashoffset]="dashOffset"
+          [style.stroke]="scoreColor" />
+      </svg>
+      <div class="score-text">
+        <span class="score-num">{{ score }}</span>
+        <span class="score-sep">/</span>
+        <span class="score-total">{{ total }}</span>
+      </div>
+    </div>
+
+    <div class="score-percentage" [style.color]="scoreColor">{{ percentage }}%</div>
+
+    <div class="results-buttons">
+      <button class="results-btn btn-primary" (click)="restartGame()">&#x1F504; Jugar de nuevo</button>
+      <button class="results-btn btn-secondary" (click)="goHome()">🏠 Volver al inicio</button>
+    </div>
   </div>
 </div>

@@ -1,79 +1,166 @@
 <div class="ranking-screen">
-  <div class="welcome-section">
-    <h1 class="welcome-title">Ranking</h1>
-    <p class="welcome-subtitle">Ranking de partidas</p>
-    <button class="auth-btn" (click)="goHome()">Volver</button>
+  <div class="ranking-header">
+    <h1 class="ranking-title">🏆 Ranking</h1>
+    <button class="back-btn" (click)="goHome()">← Volver</button>
   </div>
 
-  <!-- RANKING GLOBAL (Base de datos) -->
-  <div class="ranking-section">
-    <h2 class="section-title">🌍 Ranking Global</h2>
-    
-    @if (loading) {
-      <p class="loading-message">Cargando ranking global...</p>
-    } @else if (error) {
-      <p class="error-message">Error al cargar el ranking global. Verifica la conexión con el servidor.</p>
-    } @else if (rankingGlobal.length === 0) {
-      <p class="no-rankings">No hay partidas guardadas en el servidor aún.</p>
-    } @else {
-      <div class="ranking-list">
-        <table class="ranking-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Jugador</th>
-              <th>Puntuación</th>
-              <th>Categoría</th>
-              <th>Fecha</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (entry of rankingGlobal; track $index; let i = $index) {
-              <tr>
-                <td>{{ i + 1 }}</td>
-                <td>{{ getPlayerName(entry) }}</td>
-                <td>{{ getScore(entry) }}/{{ getTotal(entry) }}</td>
-                <td>{{ getCategory(entry) }}</td>
-                <td>{{ getFormattedDate(entry) }}</td>
-              </tr>
-            }
-          </tbody>
-        </table>
-      </div>
-    }
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab" [class.active]="activeTab === 'global'" (click)="activeTab = 'global'">
+      🌍 Global
+    </button>
+    <button class="tab" [class.active]="activeTab === 'local'" (click)="activeTab = 'local'">
+      💾 Local
+    </button>
   </div>
+
+  <!-- RANKING GLOBAL -->
+  @if (activeTab === 'global') {
+    <div class="ranking-card">
+      @if (loading) {
+        <div class="status-message">
+          <div class="spinner"></div>
+          <p>Cargando ranking global...</p>
+        </div>
+      } @else if (error) {
+        <div class="status-message error">
+          <p>❌ Error al cargar el ranking. Verifica la conexión.</p>
+          <button class="retry-btn" (click)="loadRankingGlobal()">Reintentar</button>
+        </div>
+      } @else if (rankingGlobal.length === 0) {
+        <div class="status-message">
+          <p>No hay partidas guardadas aún.</p>
+        </div>
+      } @else {
+        <!-- Podio Top 3 -->
+        @if (rankingGlobal.length >= 3) {
+          <div class="podium">
+            <div class="podium-item silver">
+              <div class="podium-medal">🥈</div>
+              <div class="podium-name">{{ getPlayerName(rankingGlobal[1]) }}</div>
+              <div class="podium-score">{{ getScore(rankingGlobal[1]) }}/{{ getTotal(rankingGlobal[1]) }}</div>
+              <div class="podium-bar bar-2"></div>
+            </div>
+            <div class="podium-item gold">
+              <div class="podium-medal">🥇</div>
+              <div class="podium-name">{{ getPlayerName(rankingGlobal[0]) }}</div>
+              <div class="podium-score">{{ getScore(rankingGlobal[0]) }}/{{ getTotal(rankingGlobal[0]) }}</div>
+              <div class="podium-bar bar-1"></div>
+            </div>
+            <div class="podium-item bronze">
+              <div class="podium-medal">🥉</div>
+              <div class="podium-name">{{ getPlayerName(rankingGlobal[2]) }}</div>
+              <div class="podium-score">{{ getScore(rankingGlobal[2]) }}/{{ getTotal(rankingGlobal[2]) }}</div>
+              <div class="podium-bar bar-3"></div>
+            </div>
+          </div>
+        }
+
+        <!-- Tabla -->
+        <div class="table-container">
+          <table class="ranking-table">
+            <thead>
+              <tr>
+                <th class="col-pos">#</th>
+                <th class="col-name">Jugador</th>
+                <th class="col-score">Puntuación</th>
+                <th class="col-cat">Categoría</th>
+                <th class="col-date">Fecha</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (entry of paginatedGlobal; track $index; let i = $index) {
+                <tr [class.top-1]="globalOffset + i === 0"
+                    [class.top-2]="globalOffset + i === 1"
+                    [class.top-3]="globalOffset + i === 2">
+                  <td class="col-pos">
+                    @if (globalOffset + i === 0) { <span class="medal">🥇</span> }
+                    @else if (globalOffset + i === 1) { <span class="medal">🥈</span> }
+                    @else if (globalOffset + i === 2) { <span class="medal">🥉</span> }
+                    @else { {{ globalOffset + i + 1 }} }
+                  </td>
+                  <td class="col-name">{{ getPlayerName(entry) }}</td>
+                  <td class="col-score">
+                    <span class="score-badge">{{ getScore(entry) }}/{{ getTotal(entry) }}</span>
+                  </td>
+                  <td class="col-cat">
+                    <span class="category-tag">{{ getCategory(entry) }}</span>
+                  </td>
+                  <td class="col-date">{{ getFormattedDate(entry) }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Paginación -->
+        @if (globalTotalPages > 1) {
+          <div class="pagination">
+            <button class="page-btn" [disabled]="globalPage === 1" (click)="globalPage = 1; updatePaginatedGlobal()">«</button>
+            <button class="page-btn" [disabled]="globalPage === 1" (click)="globalPage = globalPage - 1; updatePaginatedGlobal()">‹</button>
+            <span class="page-info">{{ globalPage }} / {{ globalTotalPages }}</span>
+            <button class="page-btn" [disabled]="globalPage === globalTotalPages" (click)="globalPage = globalPage + 1; updatePaginatedGlobal()">›</button>
+            <button class="page-btn" [disabled]="globalPage === globalTotalPages" (click)="globalPage = globalTotalPages; updatePaginatedGlobal()">»</button>
+          </div>
+        }
+      }
+    </div>
+  }
 
   <!-- RANKING LOCAL -->
-  <div class="ranking-section">
-    <h2 class="section-title">💾 Ranking Local</h2>
-    
-    @if (rankings.length === 0) {
-      <p class="no-rankings">No hay partidas guardadas localmente aún.</p>
-    } @else {
-      <div class="ranking-list">
-        <table class="ranking-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Jugador</th>
-              <th>Puntuación</th>
-              <th>Categoría</th>
-              <th>Fecha</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (entry of rankings; track entry.date; let i = $index) {
+  @if (activeTab === 'local') {
+    <div class="ranking-card">
+      @if (rankings.length === 0) {
+        <div class="status-message">
+          <p>No hay partidas guardadas localmente aún.</p>
+        </div>
+      } @else {
+        <div class="table-container">
+          <table class="ranking-table">
+            <thead>
               <tr>
-                <td>{{ i + 1 }}</td>
-                <td>{{ entry.name }}</td>
-                <td>{{ entry.score }}/{{ entry.total }}</td>
-                <td>{{ entry.category }}</td>
-                <td>{{ formatDate(entry.date) }}</td>
+                <th class="col-pos">#</th>
+                <th class="col-name">Jugador</th>
+                <th class="col-score">Puntuación</th>
+                <th class="col-cat">Categoría</th>
+                <th class="col-date">Fecha</th>
               </tr>
-            }
-          </tbody>
-        </table>
-      </div>
-    }
-  </div>
+            </thead>
+            <tbody>
+              @for (entry of paginatedLocal; track $index; let i = $index) {
+                <tr [class.top-1]="localOffset + i === 0"
+                    [class.top-2]="localOffset + i === 1"
+                    [class.top-3]="localOffset + i === 2">
+                  <td class="col-pos">
+                    @if (localOffset + i === 0) { <span class="medal">🥇</span> }
+                    @else if (localOffset + i === 1) { <span class="medal">🥈</span> }
+                    @else if (localOffset + i === 2) { <span class="medal">🥉</span> }
+                    @else { {{ localOffset + i + 1 }} }
+                  </td>
+                  <td class="col-name">{{ entry.name }}</td>
+                  <td class="col-score">
+                    <span class="score-badge">{{ entry.score }}/{{ entry.total }}</span>
+                  </td>
+                  <td class="col-cat">
+                    <span class="category-tag">{{ entry.category }}</span>
+                  </td>
+                  <td class="col-date">{{ formatDate(entry.date) }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        @if (localTotalPages > 1) {
+          <div class="pagination">
+            <button class="page-btn" [disabled]="localPage === 1" (click)="localPage = 1; updatePaginatedLocal()">«</button>
+            <button class="page-btn" [disabled]="localPage === 1" (click)="localPage = localPage - 1; updatePaginatedLocal()">‹</button>
+            <span class="page-info">{{ localPage }} / {{ localTotalPages }}</span>
+            <button class="page-btn" [disabled]="localPage === localTotalPages" (click)="localPage = localPage + 1; updatePaginatedLocal()">›</button>
+            <button class="page-btn" [disabled]="localPage === localTotalPages" (click)="localPage = localTotalPages; updatePaginatedLocal()">»</button>
+          </div>
+        }
+      }
+    </div>
+  }
 </div>

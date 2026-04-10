@@ -80,13 +80,18 @@ export class ProfileModal {
     this.userService.login(this.email, this.password).subscribe({
       next: (user) => {
         this.userService.saveUser(user);
-        this.toastService.show(`Bienvenido, ${user.nombre_usuario || user.name}`, 'success');
+        this.toastService.show(`Bienvenido, ${user.nombre_usuario}`, 'success');
         this.closeModal();
       },
       error: (err) => {
         console.error(err);
-        this.error = 'Credenciales inválidas o error en el servidor';
-        this.toastService.show('Error al iniciar sesión', 'error');
+        const serverMsg = err.error;
+        if (typeof serverMsg === 'string' && serverMsg.length > 0) {
+          this.error = serverMsg;
+        } else {
+          this.error = 'Credenciales inválidas o error en el servidor';
+        }
+        this.toastService.show(this.error, 'error');
       }
     });
   }
@@ -106,30 +111,15 @@ export class ProfileModal {
       },
       error: (err) => {
         console.error(err);
-        this.error = 'Error al crear cuenta. El email podría estar en uso.';
-        this.toastService.show('Error en el registro', 'error');
+        // Mostrar el mensaje real del backend si existe
+        const serverMsg = err.error;
+        if (typeof serverMsg === 'string' && serverMsg.length > 0) {
+          this.error = serverMsg;
+        } else {
+          this.error = 'Error al crear cuenta. Verifica los datos e inténtalo de nuevo.';
+        }
+        this.toastService.show(this.error, 'error');
       }
     });
-  }
-}
-
-    
-    // Try to save to backend
-    let savedOnServer = false;
-    try {
-      //await this.userService.saveUserToServer(user).toPromise();
-      savedOnServer = true;
-    } catch {
-      // Ignore network errors
-    }
-
-    this.userService.saveUser(user);
-    this.closeModal();
-
-    if (savedOnServer) {
-      this.toastService.show('Perfil guardado y sincronizado con servidor.', 'success');
-    } else {
-      this.toastService.show('Perfil guardado localmente (sincronización pendiente).', 'info');
-    }
   }
 }

@@ -1,0 +1,16 @@
+<div class="count-modal" cdkTrapFocus [cdkTrapFocusAutoCapture]="true">
+  <div class="count-modal-emoji">{{ data.emoji || '🧠' }}</div>
+  <h2 class="count-modal-title">{{ data.title }}</h2>
+  <p class="count-modal-subtitle">{{ data.subtitle || '¿Cuántas preguntas quieres?' }}</p>
+
+  <div class="count-selector">
+    <button class="count-btn" (click)="decreaseCount()" [disabled]="questionCount <= min" type="button">−</button>
+    <span class="count-value">{{ questionCount }}</span>
+    <button class="count-btn" (click)="increaseCount()" [disabled]="questionCount >= max" type="button">+</button>
+  </div>
+
+  <div class="count-modal-actions">
+    <button class="count-play-btn" (click)="confirm()" type="button">{{ data.playLabel || '🚀 ¡Jugar!' }}</button>
+    <button class="count-cancel-btn" (click)="cancel()" type="button">Cancelar</button>
+  </div>
+</div>
