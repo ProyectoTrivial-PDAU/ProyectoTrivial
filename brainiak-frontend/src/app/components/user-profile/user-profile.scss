@@ -393,3 +393,250 @@
     transform: scale(0.98);
   }
 }
+
+/* ===== Responsive Media Queries ===== */
+@media (max-width: 1024px) {
+  .profile-container {
+    max-width: 500px;
+    padding: 1.2rem;
+  }
+
+  .profile-hero {
+    margin-bottom: 16px;
+    padding: 36px 20px 24px;
+  }
+
+  .avatar-placeholder {
+    width: 72px;
+    height: 72px;
+    font-size: 2rem;
+  }
+
+  .user-name {
+    font-size: 22px;
+  }
+
+  .level-badge {
+    font-size: 12px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .stat-card {
+    padding: 14px 8px;
+  }
+
+  .stat-icon {
+    font-size: 24px;
+  }
+
+  .stat-value {
+    font-size: 18px;
+  }
+
+  .fav-category {
+    padding: 14px 16px;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .fav-icon {
+    font-size: 28px;
+  }
+
+  .fav-name {
+    font-size: 15px;
+  }
+
+  .section-title {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .recent-item {
+    padding: 12px 14px;
+  }
+
+  .recent-category {
+    font-size: 13px;
+  }
+
+  .recent-result {
+    font-size: 14px;
+  }
+
+  .play-btn {
+    padding: 12px 32px;
+    font-size: 14px;
+  }
+
+  .logout-btn {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    max-width: 100%;
+    padding: 0.8rem;
+  }
+
+  .profile-hero {
+    margin-bottom: 12px;
+    padding: 28px 16px 20px;
+    border-radius: 20px;
+  }
+
+  .avatar-ring {
+    margin-bottom: 10px;
+  }
+
+  .avatar-placeholder {
+    width: 64px;
+    height: 64px;
+    font-size: 1.8rem;
+    border-radius: 16px;
+  }
+
+  .user-name {
+    font-size: 20px;
+    margin-bottom: 2px;
+  }
+
+  .user-email {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .level-badge {
+    padding: 4px 14px;
+    font-size: 11px;
+  }
+
+  .xp-section {
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    border-radius: 16px;
+  }
+
+  .xp-label {
+    font-size: 12px;
+  }
+
+  .xp-value {
+    font-size: 12px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .stat-card {
+    padding: 10px 6px;
+    border-radius: 14px;
+  }
+
+  .stat-icon {
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+
+  .stat-value {
+    font-size: 16px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+  }
+
+  .fav-category {
+    padding: 12px 12px;
+    gap: 10px;
+    margin-bottom: 10px;
+    border-radius: 14px;
+  }
+
+  .fav-icon {
+    font-size: 24px;
+  }
+
+  .fav-label {
+    font-size: 10px;
+  }
+
+  .fav-name {
+    font-size: 14px;
+  }
+
+  .recent-section {
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .recent-list {
+    gap: 6px;
+  }
+
+  .recent-item {
+    padding: 10px 12px;
+    border-radius: 12px;
+  }
+
+  .recent-left {
+    gap: 10px;
+  }
+
+  .recent-score-ring {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 11px;
+  }
+
+  .recent-category {
+    font-size: 12px;
+  }
+
+  .recent-date {
+    font-size: 11px;
+  }
+
+  .recent-result {
+    font-size: 14px;
+  }
+
+  .empty-state {
+    padding: 30px 16px;
+  }
+
+  .empty-emoji {
+    font-size: 48px;
+  }
+
+  .empty-state p {
+    font-size: 13px;
+  }
+
+  .play-btn {
+    padding: 10px 24px;
+    font-size: 13px;
+    border-radius: 14px;
+  }
+
+  .logout-btn {
+    padding: 10px;
+    font-size: 13px;
+    border-radius: 12px;
+  }
+}

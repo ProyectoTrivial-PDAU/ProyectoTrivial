@@ -395,14 +395,190 @@
 }
 
 /* Responsive */
-@media (max-width: 600px) {
-  .podium { gap: 6px; }
-  .podium-item { width: 100px; }
-  .podium-medal { font-size: 28px; }
-  .podium-name { font-size: 12px; max-width: 90px; }
-  .bar-1 { height: 72px; }
-  .bar-2 { height: 52px; }
-  .bar-3 { height: 36px; }
-  .ranking-table th, .ranking-table td { padding: 8px 6px; font-size: 12px; }
-  .col-date { display: none; }
+@media (max-width: 1024px) {
+  .ranking-screen {
+    max-width: 800px;
+  }
+
+  .ranking-title {
+    font-size: 24px;
+  }
+
+  .tab {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .ranking-card {
+    padding: 18px;
+  }
+
+  .podium {
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .podium-item {
+    width: 110px;
+  }
+
+  .podium-medal {
+    font-size: 32px;
+  }
+
+  .podium-name {
+    font-size: 12px;
+  }
+
+  .podium-score {
+    font-size: 12px;
+  }
+
+  .bar-1 { height: 80px; }
+  .bar-2 { height: 60px; }
+  .bar-3 { height: 44px; }
+
+  .ranking-table th, .ranking-table td {
+    padding: 10px 10px;
+    font-size: 13px;
+  }
+
+  .medal {
+    font-size: 16px;
+  }
+
+  .score-badge,
+  .category-tag {
+    font-size: 12px;
+    padding: 2px 8px;
+  }
+
+  .page-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ranking-screen {
+    max-width: 100%;
+    padding: 16px;
+  }
+
+  .ranking-header {
+    margin-bottom: 16px;
+  }
+
+  .ranking-title {
+    font-size: 22px;
+  }
+
+  .tabs {
+    gap: 4px;
+    margin-bottom: 16px;
+    padding: 3px;
+  }
+
+  .tab {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .ranking-card {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  .podium {
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .podium-item {
+    width: 90px;
+  }
+
+  .podium-medal {
+    font-size: 28px;
+    margin-bottom: 4px;
+  }
+
+  .podium-name {
+    font-size: 11px;
+    max-width: 85px;
+  }
+
+  .podium-score {
+    font-size: 11px;
+  }
+
+  .bar-1 { height: 60px; }
+  .bar-2 { height: 44px; }
+  .bar-3 { height: 32px; }
+
+  .table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ranking-table {
+    min-width: 100%;
+  }
+
+  .ranking-table th, .ranking-table td {
+    padding: 8px 6px;
+    font-size: 12px;
+  }
+
+  .col-pos {
+    width: 40px;
+  }
+
+  .col-date {
+    display: none;
+  }
+
+  .medal {
+    font-size: 16px;
+  }
+
+  .score-badge,
+  .category-tag {
+    font-size: 11px;
+    padding: 2px 6px;
+  }
+
+  .pagination {
+    gap: 4px;
+    margin-top: 12px;
+  }
+
+  .page-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .page-info {
+    font-size: 12px;
+  }
+
+  .status-message {
+    padding: 30px 16px;
+  }
+
+  .status-message p {
+    font-size: 14px;
+  }
+
+  .spinner {
+    width: 32px;
+    height: 32px;
+  }
+
+  .retry-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
 }

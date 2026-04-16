@@ -162,3 +162,104 @@
 :host-context(body.dark) .count-cancel-btn {
   color: #94a3b8;
 }
+
+/* ===== Responsive Media Queries ===== */
+@media (max-width: 1024px) {
+  .count-modal {
+    min-width: 320px;
+    padding: 28px 32px;
+    border-radius: 24px;
+  }
+
+  .count-modal-emoji {
+    font-size: 44px;
+    margin-bottom: 10px;
+  }
+
+  .count-modal-title {
+    font-size: 22px;
+  }
+
+  .count-modal-subtitle {
+    font-size: 13px;
+    margin-bottom: 18px;
+  }
+
+  .count-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+
+  .count-value {
+    width: 56px;
+    height: 44px;
+    font-size: 22px;
+  }
+
+  .count-play-btn {
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  .count-cancel-btn {
+    padding: 9px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .count-modal {
+    min-width: auto;
+    max-width: 90vw;
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+
+  .count-modal-emoji {
+    font-size: 40px;
+    margin-bottom: 8px;
+  }
+
+  .count-modal-title {
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+
+  .count-modal-subtitle {
+    font-size: 12px;
+    margin-bottom: 14px;
+  }
+
+  .count-selector {
+    margin: 0 auto 16px;
+  }
+
+  .count-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .count-value {
+    width: 48px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .count-modal-actions {
+    gap: 8px;
+  }
+
+  .count-play-btn {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 12px;
+  }
+
+  .count-cancel-btn {
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+}

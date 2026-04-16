@@ -95,3 +95,87 @@
     box-shadow: 0 4px 16px rgba(239, 68, 68, 0.35) !important;
   }
 }
+
+/* ===== Responsive Media Queries ===== */
+@media (max-width: 1024px) {
+  .users-screen {
+    max-width: 720px;
+  }
+
+  .welcome-title {
+    font-size: 28px;
+  }
+
+  .welcome-subtitle {
+    font-size: 16px;
+  }
+
+  .user-row {
+    padding: 14px 16px;
+    gap: 10px;
+  }
+
+  .user-name {
+    font-size: 14px;
+  }
+
+  .user-nick {
+    font-size: 12px;
+  }
+
+  .delete-btn {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .users-screen {
+    max-width: 100%;
+    padding: 16px;
+  }
+
+  .welcome-section {
+    margin-bottom: 20px;
+  }
+
+  .welcome-title {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  .welcome-subtitle {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .users-list {
+    gap: 8px;
+  }
+
+  .user-row {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .user-name {
+    font-size: 13px;
+  }
+
+  .user-nick {
+    font-size: 11px;
+  }
+
+  .user-actions {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .delete-btn {
+    padding: 6px 12px;
+    font-size: 11px;
+    width: 100%;
+  }
+}
