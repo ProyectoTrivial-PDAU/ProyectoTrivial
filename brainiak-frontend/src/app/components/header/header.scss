@@ -1,14 +1,18 @@
 .header {
-  width: 100%;
+  position: fixed;
+  top: 20px;
+  left: 100px;
+  width: calc(100vw - 120px);
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 40px;
   padding: 16px 24px;
   border-radius: 20px;
   animation: fadeInDown 0.5s ease-out;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
+  z-index: 15;
 }
 
 :host-context(body.light) .header {
