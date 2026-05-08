@@ -19,8 +19,8 @@ jobs:
       - name: Clonar repositorio
         uses: actions/checkout@v4
         with:
-          # Al estar en la raíz, necesitamos que clone todo
-          sparse-checkout: .
+        
+  
 
       - name: Configurar Java 17
         uses: actions/setup-java@v4
@@ -34,7 +34,7 @@ jobs:
         run: chmod +x mvnw
 
       - name: Ejecutar todos los tests con Maven Wrapper
-        run: ./mvnw test --batch-mode
+        run: ./mvnw test --batch-mode -Dspring.profiles.active=test
 
       - name: Publicar resultados de los tests
         if: always()
