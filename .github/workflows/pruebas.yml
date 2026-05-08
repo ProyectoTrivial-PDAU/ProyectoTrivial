@@ -22,12 +22,18 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Ejecutar todos los tests
-        run: mvn test --batch-mode
+      - name: Dar permisos de ejecucion al wrapper
+        # Esto es vital para que GitHub pueda ejecutar ./mvnw
+        run: chmod +x mvnw
+
+      - name: Ejecutar todos los tests con Maven Wrapper
+        # Usamos ./mvnw en lugar de mvn para asegurar compatibilidad
+        working-directory: ./ProyectoTrivial  # Asegúrate de estar en el directorio raíz del proyecto
+        run: ./mvnw test --batch-mode
 
       - name: Publicar resultados de los tests
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: resultados-tests
-          path: target/surefire-reports/
+          path: ProyectoTrivial/target/surefire-reports/
