@@ -2,7 +2,6 @@ package com.example.ProyectoTrivial.Servicios;
 
 import com.example.ProyectoTrivial.Model.Usuarios.Usuario;
 import com.example.ProyectoTrivial.Repositorios.UsuarioRepository;
-import com.example.ProyectoTrivial.Servicios.UsuarioService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,8 +1,6 @@
 package com.example.ProyectoTrivial.Servicios;
 import com.example.ProyectoTrivial.Model.Categoria;
 import com.example.ProyectoTrivial.Model.Pregunta;
-import com.example.ProyectoTrivial.Servicios.JuegoTrivialService;
-import com.example.ProyectoTrivial.Servicios.PreguntaService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,6 +18,7 @@ import static org.mockito.Mockito.*;
  * Pruebas UNITARIAS de JuegoTrivialService.
  * Criterio b): "Se han creado pruebas unitarias"
  */
+
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Pruebas unitarias de JuegoTrivialService")
 class JuegoTrivialServiceTest {

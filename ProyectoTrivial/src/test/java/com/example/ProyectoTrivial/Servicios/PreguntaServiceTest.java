@@ -2,7 +2,6 @@ package com.example.ProyectoTrivial.Servicios;
 import com.example.ProyectoTrivial.Model.Categoria;
 import com.example.ProyectoTrivial.Model.Pregunta;
 import com.example.ProyectoTrivial.Repositorios.PreguntaRepository;
-import com.example.ProyectoTrivial.Servicios.PreguntaService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
