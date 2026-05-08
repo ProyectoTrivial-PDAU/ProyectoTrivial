@@ -10,7 +10,6 @@ jobs:
   test:
     name: Ejecutar pruebas
     runs-on: ubuntu-latest
-    # ESTO APLICA LA RUTA A TODOS LOS PASOS DEL TRABAJO
     defaults:
       run:
         working-directory: ./ProyectoTrivial
@@ -18,28 +17,24 @@ jobs:
     steps:
       - name: Clonar repositorio
         uses: actions/checkout@v4
-        with:
-        
-  
 
       - name: Configurar Java 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: maven
+          cache: 'maven'
+          cache-dependency-path: 'ProyectoTrivial/pom.xml'
 
       - name: Dar permisos de ejecucion al wrapper
-        # Ahora sí encontrará mvnw porque ya está "dentro" de la carpeta
         run: chmod +x mvnw
 
       - name: Ejecutar todos los tests con Maven Wrapper
-        run: ./mvnw test --batch-mode -Dspring.profiles.active=test
+        run: ./mvnw test --batch-mode
 
       - name: Publicar resultados de los tests
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: resultados-tests
-          # La ruta aquí debe ser relativa a la raíz del repo para el artifact
           path: ProyectoTrivial/target/surefire-reports/
