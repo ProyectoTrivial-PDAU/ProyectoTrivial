@@ -34,6 +34,7 @@ public class Usuario {
     @Column(name = "NOMBRE_US", nullable = false)
     private String nombre_usuario;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Partida> partidas;
 

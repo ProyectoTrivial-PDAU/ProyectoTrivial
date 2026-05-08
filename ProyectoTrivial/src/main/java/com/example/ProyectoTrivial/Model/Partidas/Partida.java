@@ -1,6 +1,8 @@
 package com.example.ProyectoTrivial.Model.Partidas;
 
 import com.example.ProyectoTrivial.Model.Usuarios.Usuario;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -39,6 +41,7 @@ public class Partida {
      * orphanRemoval = true indica que si una Partida se elimina, las
      * PartidaPreguntas asociadas también se eliminan automáticamente.
      */
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USUARIO_ID", nullable = false)
     private Usuario usuario;

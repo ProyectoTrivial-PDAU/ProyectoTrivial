@@ -1,0 +1,33 @@
+name: CI - Pruebas Automatizadas
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  test:
+    name: Ejecutar pruebas
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Java 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Ejecutar todos los tests
+        run: mvn test --batch-mode
+
+      - name: Publicar resultados de los tests
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: resultados-tests
+          path: target/surefire-reports/
